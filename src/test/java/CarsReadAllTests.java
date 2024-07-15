@@ -9,9 +9,7 @@ public class CarsReadAllTests extends BaseTest {
 
     @BeforeEach
     public void setUp() {
-        loginPage.login("user@pflb.ru", "user");
-        String alertText = loginPage.getAlertMessage();
-        assertEquals("Successful authorization", alertText, "Alert text does not match!");
+        loginPage.fullAuthorization();
         menu.openCarsReadAll();
     }
 

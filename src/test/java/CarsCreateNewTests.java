@@ -1,8 +1,7 @@
 import base.BaseTest;
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsCreateNewTests extends BaseTest {
@@ -19,7 +18,7 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(2)
     @DisplayName("Переход авторизированным пользователем на страницу Create new")
     public void testAuthorization() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage();
     }
@@ -28,7 +27,7 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(3)
     @DisplayName("Создание автомобиля")
     public void testCreateCar() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
                 .createNewCar("Diesel", "Fiat", "Albea", "5000");
@@ -50,7 +49,7 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(4)
     @DisplayName("Создание автомобиля с пустыми полями")
     public void testCreateEmptyFoldCar() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
                 .createNewCar("", "", "", "");
@@ -72,13 +71,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(5)
     @DisplayName("Создание автомобиля с пустым полем Engine Type")
     public void testEmptyEngineType() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("")
-                .enterMark("Fiat")
-                .enterModel("Largus")
-                .enterPrice("1800");
+                .createNewCar("", "Fiat", "Albea", "5000");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -88,13 +84,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(6)
     @DisplayName("Создание автомобиля с пустым полем Mark")
     public void testEmptyMark() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("")
-                .enterModel("Largus")
-                .enterPrice("1800");
+                .createNewCar("Diesel", "", "Albea", "5000");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -104,13 +97,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(7)
     @DisplayName("Создание автомобиля с пустым полем Model")
     public void testEmptyModel() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("Fiat")
-                .enterModel("")
-                .enterPrice("1800");
+                .createNewCar("Diesel", "Fiat", "", "5000");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -120,13 +110,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(8)
     @DisplayName("Создание автомобиля с пустым полем Price")
     public void testEmptyPrice() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("Fiat")
-                .enterModel("Albea")
-                .enterPrice("");
+                .createNewCar("Diesel", "Fiat", "Albea", "");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -136,13 +123,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(9)
     @DisplayName("Создание автомобиля с недопустимыми символами в поле Price")
     public void testInvalidCharPriceFold() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("Fiat")
-                .enterModel("Albea")
-                .enterPrice("///@?#");
+                .createNewCar("Diesel", "Fiat", "Albea", "/?@#$");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -152,13 +136,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(10)
     @DisplayName("Создание автомобиля с буквами в поле Price")
     public void testLettersPriceFold() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("Fiat")
-                .enterModel("Albea")
-                .enterPrice("AsdФыв");
+                .createNewCar("Diesel", "Fiat", "Albea", "AsdФыв");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -168,13 +149,10 @@ public class CarsCreateNewTests extends BaseTest {
     @Order(11)
     @DisplayName("Создание автомобиля с отрицательными числами в поле Price")
     public void testNegativeNumbersPriceFold() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Diesel")
-                .enterMark("Fiat")
-                .enterModel("Albea")
-                .enterPrice("-12");
+                .createNewCar("Diesel", "Fiat", "Albea", "-12");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: Invalid request data";
         assertEquals(statusExpected, status);
@@ -182,18 +160,14 @@ public class CarsCreateNewTests extends BaseTest {
 
     @Test
     @Order(12)
-    @DisplayName("Создание автомобиля с отрицательными числами в поле Price")
+    @DisplayName("Создание автомобиля с невалидным EngineType")
     public void testInvalidEngineTypeFold() {
-        loginPage.login("user@pflb.ru", "user");
+        loginPage.fullAuthorization();
         menu.openCarsCreateNew();
         carsCreateNew.isOpenPage()
-                .enterEngineType("Fiat")
-                .enterMark("Fiat")
-                .enterModel("Albea")
-                .enterPrice("12");
+                .createNewCar("Fiat", "Fiat", "Albea", "12");
         String status = carsCreateNew.getStatusText();
         String statusExpected = "Status: AxiosError: Request failed with status code 400";
         assertEquals(statusExpected, status);
     }
-
 }

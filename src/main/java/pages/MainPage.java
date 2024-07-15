@@ -21,6 +21,8 @@ public class MainPage {
         USERS_LINK.click();
         CREATE_NEW_USER_LINK.shouldBe(visible);
         CREATE_NEW_USER_LINK.click();
+    }
+
     public void openCarsCreateNew() {
         CARS_DROPDOWN.shouldBe(visible).click();
         CARS_CREATE_NEW.shouldBe(visible).click();
