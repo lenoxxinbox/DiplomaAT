@@ -8,45 +8,45 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
-public class BuySellCarPage {
+public class SettleEvictHousesPage {
     private final SelenideElement userID = $(id("id_send"));
-    private final SelenideElement carID = $(id("car_send"));
+    private final SelenideElement houseID = $(id("house_send"));
     private final SelenideElement usersMenu = $(xpath("//a[text()='Users']"));
-    private final SelenideElement buySellCarMenu = $(xpath("//a[text()='Buy or sell car']"));
-    private final SelenideElement buyRadiobutton = $(xpath("//input[@value='buyCar']"));
-    private final SelenideElement sellRadiobutton = $(xpath("//input[@value='sellCar']"));
+    private final SelenideElement settleEvictHousesMenu = $(xpath("//a[text()='Settle to house']"));
+    private final SelenideElement settleRadiobutton = $(xpath("//input[@value='settle']"));
+    private final SelenideElement evictRadiobutton = $(xpath("//input[@value='evict']"));
     private final SelenideElement clickPush = $(xpath("//button[@class='tableButton btn btn-primary']"));
     private final SelenideElement resultStatus = $(xpath("//button[@class='status btn btn-secondary']"));
 
-    public BuySellCarPage goToBuySellCarMenu () {
+    public SettleEvictHousesPage goToSettleEvictHousesMenu () {
         usersMenu.click();
-        buySellCarMenu.click();
+        settleEvictHousesMenu.click();
         return this;
     }
 
-    public BuySellCarPage userIDInput(String id) {
+    public SettleEvictHousesPage userIDInput(String id) {
         userID.click();
         userID.sendKeys(id);
         return this;
     }
 
-    public BuySellCarPage carIDInput(String id) {
-        carID.click();
-        carID.sendKeys(id);
+    public SettleEvictHousesPage houseIDInput(String id) {
+        houseID.click();
+        houseID.sendKeys(id);
         return this;
     }
 
-    public BuySellCarPage buy () {
-        buyRadiobutton.click();
+    public SettleEvictHousesPage settle() {
+        settleRadiobutton.click();
         return this;
     }
 
-    public BuySellCarPage sell () {
-        sellRadiobutton.click();
+    public SettleEvictHousesPage evict() {
+        evictRadiobutton.click();
         return this;
     }
 
-    public BuySellCarPage push () {
+    public SettleEvictHousesPage push() {
         clickPush.shouldBe(visible);
         clickPush.click();
         return this;
