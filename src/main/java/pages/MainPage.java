@@ -12,13 +12,13 @@ public class MainPage {
     private static final SelenideElement CARS_CREATE_NEW = $x("//a[text() = 'Create new']");
 
     public void openCarsReadAll(){
-        $(CARS_DROPDOWN).click();
-        $(CARS_READ_ALL).click();
+        CARS_DROPDOWN.click();
+        CARS_READ_ALL.click();
     }
 
     public void openCarsCreateNew() {
-        $(CARS_DROPDOWN).shouldBe(visible).click();
-        $(CARS_CREATE_NEW).shouldBe(visible).click();
+        CARS_DROPDOWN.shouldBe(visible).click();
+        CARS_CREATE_NEW.shouldBe(visible).click();
     }
 
 

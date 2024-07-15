@@ -26,37 +26,37 @@ public class CarsReadAll {
     Actions actions = new Actions(driver);
 
     public CarsReadAll clickSortById() {
-        SelenideElement element = $(SORT_BY_ID).shouldBe(visible);
+        SelenideElement element = SORT_BY_ID.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByEngineType() {
-        SelenideElement element = $(SORT_BY_ENGINE_TYPE).shouldBe(visible);
+        SelenideElement element = SORT_BY_ENGINE_TYPE.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByMark() {
-        SelenideElement element = $(SORT_BY_MARK).shouldBe(visible);
+        SelenideElement element = SORT_BY_MARK.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByModel() {
-        SelenideElement element = $(SORT_BY_MODEL).shouldBe(visible);
+        SelenideElement element = SORT_BY_MODEL.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByPrice() {
-        SelenideElement element = $(SORT_BY_PRICE).shouldBe(visible);
+        SelenideElement element = SORT_BY_PRICE.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickReloadButton() {
-        SelenideElement element = $(RELOAD_BUTTON).shouldBe(visible);
+        SelenideElement element = RELOAD_BUTTON.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
