@@ -4,12 +4,17 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import pages.CreateNewUserPage;
+import pages.LoginPage;
+import utils.ConfigReader;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
-    protected static String baseUSRl = "http://77.50.236.203:4881/";
+    protected static String BASE_URL = ConfigReader.get("baseURL");
+    LoginPage loginPage;
+    CreateNewUserPage createNewUserPage;
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -19,7 +24,9 @@ public class BaseTest {
 
     @BeforeEach
     public void openBrowser() {
-        open(baseUSRl);
+        open(BASE_URL);
+        loginPage = new LoginPage();
+        createNewUserPage = new CreateNewUserPage();
     }
 
     @AfterEach
