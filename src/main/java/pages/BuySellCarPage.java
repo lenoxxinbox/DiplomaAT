@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.Configuration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -48,16 +47,18 @@ public class BuySellCarPage {
     }
 
     public BuySellCarPage push () {
-        Configuration.timeout = 50000;
         clickPush.shouldBe(visible);
-        System.out.println("До нажатия кнопки Push");
         clickPush.click();
-        System.out.println("После нажатия кнопки Push");
         return this;
     }
 
     public String getResultMessage() {
-        System.out.println(resultStatus.shouldBe(Condition.visible).getText());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return resultStatus.shouldBe(Condition.visible).getText();
     }
 }

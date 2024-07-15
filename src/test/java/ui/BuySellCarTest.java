@@ -1,7 +1,6 @@
 package ui;
 
 import base.BaseTest;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +12,6 @@ public class BuySellCarTest extends BaseTest {
 
     @BeforeEach
     public void inTest() {
-        Configuration.timeout = 50000;
         loginPage.isPageOpen().login();
         Selenide.switchTo().alert().accept();
     }
@@ -22,7 +20,6 @@ public class BuySellCarTest extends BaseTest {
     @DisplayName("Успешная покупка автомобиля")
     @Owner("Elena Dmitrienko")
     public void buyCar() {
-        Configuration.timeout = 50000;
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -37,7 +34,6 @@ public class BuySellCarTest extends BaseTest {
     @DisplayName("Успешная продажа автомобиля")
     @Owner("Elena Dmitrienko")
     public void sellCar() {
-        Configuration.timeout = 50000;
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -52,7 +48,6 @@ public class BuySellCarTest extends BaseTest {
     @DisplayName("Продажа несуществующего автомобиля")
     @Owner("Elena Dmitrienko")
     public void sellNotCar() {
-        Configuration.timeout = 50000;
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -67,7 +62,6 @@ public class BuySellCarTest extends BaseTest {
     @DisplayName("Продажа автомобиля несуществующим пользователем")
     @Owner("Elena Dmitrienko")
     public void buyNotUser() {
-        Configuration.timeout = 50000;
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("101010101010").
