@@ -29,10 +29,10 @@ public class BaseTest {
     @BeforeEach
     public void openBrowser() {
         open(BASE_URL);
+        menu = new MainPage();
         loginPage = new LoginPage();
         carsReadAll = new CarsReadAll();
         carsCreateNew = new CarsCreateNew();
-        menu = new MainPage();
     }
 
     @AfterEach
