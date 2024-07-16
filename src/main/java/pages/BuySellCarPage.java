@@ -9,46 +9,46 @@ import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
 public class BuySellCarPage {
-    private final SelenideElement userID = $(id("id_send"));
-    private final SelenideElement carID = $(id("car_send"));
-    private final SelenideElement usersMenu = $(xpath("//a[text()='Users']"));
-    private final SelenideElement buySellCarMenu = $(xpath("//a[text()='Buy or sell car']"));
-    private final SelenideElement buyRadiobutton = $(xpath("//input[@value='buyCar']"));
-    private final SelenideElement sellRadiobutton = $(xpath("//input[@value='sellCar']"));
-    private final SelenideElement clickPush = $(xpath("//button[@class='tableButton btn btn-primary']"));
-    private final SelenideElement resultStatus = $(xpath("//button[@class='status btn btn-secondary']"));
+    private final SelenideElement USER_ID = $(id("id_send"));
+    private final SelenideElement CAR_ID = $(id("car_send"));
+    private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
+    private final SelenideElement BUY_SELL_CAR_MENU = $(xpath("//a[text()='Buy or sell car']"));
+    private final SelenideElement BUY_RADIOBUTTON = $(xpath("//input[@value='buyCar']"));
+    private final SelenideElement SELL_RADIOBUTTON = $(xpath("//input[@value='sellCar']"));
+    private final SelenideElement CLICK_PUSH = $(xpath("//button[@class='tableButton btn btn-primary']"));
+    private final SelenideElement RESULT_STATUS = $(xpath("//button[@class='status btn btn-secondary']"));
 
     public BuySellCarPage goToBuySellCarMenu () {
-        usersMenu.click();
-        buySellCarMenu.click();
+        USERS_MENU.click();
+        BUY_SELL_CAR_MENU.click();
         return this;
     }
 
     public BuySellCarPage userIDInput(String id) {
-        userID.click();
-        userID.sendKeys(id);
+        USER_ID.click();
+        USER_ID.sendKeys(id);
         return this;
     }
 
     public BuySellCarPage carIDInput(String id) {
-        carID.click();
-        carID.sendKeys(id);
+        CAR_ID.click();
+        CAR_ID.sendKeys(id);
         return this;
     }
 
     public BuySellCarPage buy () {
-        buyRadiobutton.click();
+        BUY_RADIOBUTTON.click();
         return this;
     }
 
     public BuySellCarPage sell () {
-        sellRadiobutton.click();
+        SELL_RADIOBUTTON.click();
         return this;
     }
 
     public BuySellCarPage push () {
-        clickPush.shouldBe(visible);
-        clickPush.click();
+        CLICK_PUSH.shouldBe(visible);
+        CLICK_PUSH.click();
         return this;
     }
 
@@ -59,6 +59,6 @@ public class BuySellCarPage {
             e.printStackTrace();
         }
 
-        return resultStatus.shouldBe(Condition.visible).getText();
+        return RESULT_STATUS.shouldBe(Condition.visible).getText();
     }
 }

@@ -11,16 +11,16 @@ import static org.openqa.selenium.By.xpath;
 public class SettleEvictHousesPage {
     private final SelenideElement userID = $(id("id_send"));
     private final SelenideElement houseID = $(id("house_send"));
-    private final SelenideElement usersMenu = $(xpath("//a[text()='Users']"));
-    private final SelenideElement settleEvictHousesMenu = $(xpath("//a[text()='Settle to house']"));
-    private final SelenideElement settleRadiobutton = $(xpath("//input[@value='settle']"));
-    private final SelenideElement evictRadiobutton = $(xpath("//input[@value='evict']"));
-    private final SelenideElement clickPush = $(xpath("//button[@class='tableButton btn btn-primary']"));
-    private final SelenideElement resultStatus = $(xpath("//button[@class='status btn btn-secondary']"));
+    private final SelenideElement USER_MENU = $(xpath("//a[text()='Users']"));
+    private final SelenideElement SETTLE_EVICT_HOUSES_MENU = $(xpath("//a[text()='Settle to house']"));
+    private final SelenideElement SETTLE_RADIOBUTTON = $(xpath("//input[@value='settle']"));
+    private final SelenideElement EVICT_RADIOBUTTON = $(xpath("//input[@value='evict']"));
+    private final SelenideElement CLICK_PUSH = $(xpath("//button[@class='tableButton btn btn-primary']"));
+    private final SelenideElement RESULT_STATUS = $(xpath("//button[@class='status btn btn-secondary']"));
 
     public SettleEvictHousesPage goToSettleEvictHousesMenu () {
-        usersMenu.click();
-        settleEvictHousesMenu.click();
+        USER_MENU.click();
+        SETTLE_EVICT_HOUSES_MENU.click();
         return this;
     }
 
@@ -37,18 +37,18 @@ public class SettleEvictHousesPage {
     }
 
     public SettleEvictHousesPage settle() {
-        settleRadiobutton.click();
+        SETTLE_RADIOBUTTON.click();
         return this;
     }
 
     public SettleEvictHousesPage evict() {
-        evictRadiobutton.click();
+        EVICT_RADIOBUTTON.click();
         return this;
     }
 
     public SettleEvictHousesPage push() {
-        clickPush.shouldBe(visible);
-        clickPush.click();
+        CLICK_PUSH.shouldBe(visible);
+        CLICK_PUSH.click();
         return this;
     }
 
@@ -59,6 +59,6 @@ public class SettleEvictHousesPage {
             e.printStackTrace();
         }
 
-        return resultStatus.shouldBe(Condition.visible).getText();
+        return RESULT_STATUS.shouldBe(Condition.visible).getText();
     }
 }

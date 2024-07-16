@@ -1,7 +1,6 @@
 package ui;
 
 import base.BaseTest;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +10,7 @@ import org.junit.jupiter.api.Test;
 public class SettleEvictHousesTest extends BaseTest {
     @BeforeEach
     public void inTest() {
-        loginPage.isPageOpen().login();
-        Selenide.switchTo().alert().accept();
+        loginPage.fullAuthorization();
     }
 
     @Test

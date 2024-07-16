@@ -1,7 +1,6 @@
 package ui;
 
 import base.BaseTest;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +11,7 @@ public class BuySellCarTest extends BaseTest {
 
     @BeforeEach
     public void inTest() {
-        loginPage.isPageOpen().login();
-        Selenide.switchTo().alert().accept();
+        loginPage.fullAuthorization();
     }
 
     @Test
