@@ -5,6 +5,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -37,23 +39,58 @@ public class CreateNewUserPage {
             actions.click(SEX_FEMALE_INPUT).perform();
             SEX_FEMALE_INPUT.shouldBe(selected);
         }
-        FIRST_NAME_INPUT.sendKeys(firstName);
-        SECOND_NAME_INPUT.sendKeys(secondName);
-        MONEY_INPUT.sendKeys(String.valueOf(money));
-        AGE_INPUT.sendKeys(String.valueOf(age));
-        PUSH_BUTTON.click();
+        this.fillFirstName(firstName)
+                .fillSecondName(secondName)
+                .fillAge(age)
+                .fillMoney(money)
+                .selectSex(isMale)
+                .clickPushButton();
+        return this;
+    }
+
+    public CreateNewUserPage fillFirstName(String firstName) {
+        actions.click(FIRST_NAME_INPUT).perform();
+        actions.sendKeys(FIRST_NAME_INPUT, firstName);
+        return this;
+    }
+
+    public CreateNewUserPage fillSecondName(String secondName) {
+        actions.click(SECOND_NAME_INPUT).perform();
+        actions.sendKeys(SECOND_NAME_INPUT, secondName);
+        return this;
+    }
+
+    public CreateNewUserPage fillAge(int age) {
+        actions.sendKeys(AGE_INPUT, String.valueOf(age));
+        return this;
+    }
+
+    public CreateNewUserPage fillMoney(int money) {
+        actions.sendKeys(MONEY_INPUT, String.valueOf(money));
+        return this;
+    }
+
+    public CreateNewUserPage selectSex(boolean isMale) {
+        if (isMale) {
+            actions.click(SEX_MALE_INPUT).perform();
+            SEX_MALE_INPUT.shouldBe(selected);
+        } else {
+            actions.click(SEX_FEMALE_INPUT).perform();
+            SEX_FEMALE_INPUT.shouldBe(selected);
+        }
         return this;
     }
 
     public CreateNewUserPage clickPushButton() {
-        PUSH_BUTTON.click();
+        PUSH_BUTTON.shouldBe(visible);
+        actions.click(PUSH_BUTTON).perform();
         return this;
     }
 
-    public String getStatusMessage(String expectedMessage) {
 
-        STATUS_BUTTON.shouldHave(text(expectedMessage));
-        return STATUS_BUTTON.getText();
+    public boolean isStatusMessageCorrect(String expectedMessage) {
+        STATUS_BUTTON.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
+        return STATUS_BUTTON.getText().equals(expectedMessage);
     }
 
     public String getNewUserId() {
