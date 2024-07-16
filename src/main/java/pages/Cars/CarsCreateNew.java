@@ -2,10 +2,10 @@ package pages.Cars;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -20,12 +20,9 @@ public class CarsCreateNew {
     private static final SelenideElement STATUS_FOLD = $x("//*[@id=\"root\"]/div/section/div/div/button[2]");
     private static final SelenideElement NEW_ID_FOLD = $x("//*[@id=\"root\"]/div/section/div/div/button[3]");
 
-    WebDriver driver = WebDriverRunner.getWebDriver();
-    Actions actions = new Actions(driver);
-
     public CarsCreateNew isOpenPage() {
         try {
-            $(PUSH_TO_API_BUTTON).shouldBe(Condition.visible);
+            PUSH_TO_API_BUTTON.shouldBe(Condition.visible);
         } catch (AssertionError e) {
             throw new IllegalStateException("Page is not open or PUSH button not found", e);
         }
@@ -38,6 +35,7 @@ public class CarsCreateNew {
         enterModel(model);
         enterPrice(price);
         clickPushButton();
+        waitForStatusChange();
         return this;
     }
 
@@ -62,22 +60,25 @@ public class CarsCreateNew {
     }
 
     public CarsCreateNew clickPushButton() {
-        SelenideElement element = PUSH_TO_API_BUTTON.shouldBe(visible);
-        actions.click(element).perform();
+        PUSH_TO_API_BUTTON.shouldBe(Condition.visible).click();
+        STATUS_FOLD.shouldBe(Condition.visible);
         return this;
     }
 
     public String getStatusText(){
         String status = STATUS_FOLD.shouldBe(visible).getText();
-        System.out.println(status);
         return status;
     }
 
     public String getNewId() {
         String newIDText = NEW_ID_FOLD.shouldBe(Condition.visible).getText();
         String newID = newIDText.split(": ")[1].trim();
-        System.out.println(newID);
         return newID;
 
+    }
+
+    public CarsCreateNew waitForStatusChange() {
+        STATUS_FOLD.shouldNotHave(text("Status: not pushed"), Duration.ofSeconds(10));
+        return this;
     }
 }
