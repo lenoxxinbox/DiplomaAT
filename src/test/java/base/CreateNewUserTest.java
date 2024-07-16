@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.MainPage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +13,8 @@ public class CreateNewUserTest extends BaseTest {
 
     @BeforeEach
     public void login() {
-        loginPage.fullAuthorization();
-        MainPage.openCreateNewUserPage();
+        loginPage.isPageOpen().fullAuthorization();
+        menu.openCreateNewUserPage();
 
     }
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import pages.CreateNewUserPage;
 import pages.LoginPage;
+import pages.MainPage;
 import utils.ConfigReader;
 import utils.DBConnection;
 
@@ -19,6 +20,7 @@ public class BaseTest {
     protected static DBConnection dbConnection;
     CreateNewUserPage createNewUserPage;
     LoginPage loginPage;
+    MainPage menu;
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -32,6 +34,8 @@ public class BaseTest {
         open(BASE_URL);
         loginPage = new LoginPage();
         createNewUserPage = new CreateNewUserPage();
+        menu = new MainPage();
+
     }
 
     @AfterEach

@@ -9,7 +9,7 @@ public class MainPage {
     private final static SelenideElement USERS_LINK = $x("//a[text()='Users']");
     private final static SelenideElement CREATE_NEW_USER_LINK = $x("//a[@href='#/create/user']");
 
-    public static void openCreateNewUserPage() {
+    public void openCreateNewUserPage() {
         USERS_LINK.click();
         CREATE_NEW_USER_LINK.shouldBe(visible);
         CREATE_NEW_USER_LINK.click();
