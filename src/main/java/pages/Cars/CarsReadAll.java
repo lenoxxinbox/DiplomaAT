@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -21,41 +22,49 @@ public class CarsReadAll {
     private static final SelenideElement SORT_BY_MARK = $x("//*[@id=\"root\"]/div/section/div/div/button[5]");
     private static final SelenideElement SORT_BY_MODEL = $x("//*[@id=\"root\"]/div/section/div/div/button[6]");
     private static final SelenideElement SORT_BY_PRICE = $x("//*[@id=\"root\"]/div/section/div/div/button[7]");
+    private static final SelenideElement TABLE_BODY = $x("//table/tbody");
+
 
     WebDriver driver = WebDriverRunner.getWebDriver();
     Actions actions = new Actions(driver);
 
     public CarsReadAll clickSortById() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_ID.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByEngineType() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_ENGINE_TYPE.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByMark() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_MARK.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByModel() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_MODEL.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickSortByPrice() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_PRICE.shouldBe(visible);
         actions.click(element).perform();
         return this;
     }
 
     public CarsReadAll clickReloadButton() {
+        TABLE_BODY.shouldBe(visible);
         SelenideElement element = RELOAD_BUTTON.shouldBe(visible);
         actions.click(element).perform();
         return this;
@@ -83,14 +92,14 @@ public class CarsReadAll {
     }
 
     public CarsReadAll getListForModel(boolean ascending){
-        ElementsCollection list = $$x("//tbody//tr//td[3]")
+        ElementsCollection list = $$x("//tbody//tr//td[4]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
 
     public CarsReadAll getListForPrice(boolean ascending){
-        ElementsCollection list = $$x("//tbody//tr//td[3]")
+        ElementsCollection list = $$x("//tbody//tr//td[5]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(true, ascending, list);
         return this;
@@ -119,9 +128,6 @@ public class CarsReadAll {
     }
 
     private <T extends Comparable<? super T>> void checkSortingOrder(List<T> valueList, boolean ascending) {
-        for (T num : valueList) {
-            System.out.println(num);
-        }
         if (valueList.isEmpty()) {
             throw new AssertionError("No valid data found for sorting.");
         }
@@ -162,6 +168,14 @@ public class CarsReadAll {
 
     public String getFirstId(){
         String firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]")).getText();
+        TABLE_BODY.shouldBe(visible);
         return firstId;
+    }
+
+    public boolean isIdCorrect(String expectedId) {
+        TABLE_BODY.shouldBe(visible);
+        SelenideElement firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]"));
+        firstId.shouldHave(text(expectedId));
+        return expectedId.equals(firstId.getText());
     }
 }
