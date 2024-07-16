@@ -7,19 +7,24 @@ import org.junit.jupiter.api.BeforeEach;
 import pages.CreateNewUserPage;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.DBConnection;
+
+import java.sql.SQLException;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
     protected static String BASE_URL = ConfigReader.get("baseURL");
-    LoginPage loginPage;
+    protected static DBConnection dbConnection;
     CreateNewUserPage createNewUserPage;
+    LoginPage loginPage;
 
     @BeforeAll
     public static void setUpBeforeClass() {
         Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";  // Это заменяет startMaximized
+        Configuration.browserSize = "1920x1080";
+        dbConnection = new DBConnection();
     }
 
     @BeforeEach
@@ -30,7 +35,8 @@ public class BaseTest {
     }
 
     @AfterEach
-    public void tearDownAfterClass() {
+    public void tearDownAfterClass() throws SQLException {
         closeWebDriver();
+        dbConnection.disconnect();
     }
 }

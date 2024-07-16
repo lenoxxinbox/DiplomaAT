@@ -61,6 +61,12 @@
             <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.24
+            </version> <!-- Убедитесь, что это актуальная версия. Вы можете проверить последнюю версию на сайте Maven Central -->
+        </dependency>
     </dependencies>
 
     <build>
