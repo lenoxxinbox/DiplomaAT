@@ -17,6 +17,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
     protected static String BASE_URL = ConfigReader.get("baseURL");
+    protected static LoginPage loginPage;
     protected static DBConnection dbConnection;
     CreateNewUserPage createNewUserPage;
     LoginPage loginPage;
@@ -32,15 +33,16 @@ public class BaseTest {
     @BeforeEach
     public void openBrowser() {
         open(BASE_URL);
+        menu = new MainPage();
         loginPage = new LoginPage();
         createNewUserPage = new CreateNewUserPage();
         menu = new MainPage();
 
+
     }
 
     @AfterEach
-    public void tearDownAfterClass() throws SQLException {
+    public void tearDownAfterClass() {
         closeWebDriver();
-        dbConnection.disconnect();
     }
 }

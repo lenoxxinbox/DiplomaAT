@@ -75,7 +75,4 @@ public class LoginPage {
     public String getPasswordErrorMessage() {
         return PASSWORD_ERROR_MESSAGE.getText();
     }
-
-
 }
-
