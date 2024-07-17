@@ -16,7 +16,7 @@ public class SettleEvictHousesTest extends BaseTest {
     @Test
     @DisplayName("Успешное заселение в дом")
     @Owner("Elena Dmitrienko")
-    public void settleHouse() {
+    public void settleHouseTest() {
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
                 userIDInput("22").
@@ -30,7 +30,7 @@ public class SettleEvictHousesTest extends BaseTest {
     @Test
     @DisplayName("Успешное выселение из дома")
     @Owner("Elena Dmitrienko")
-    public void evictHouse() {
+    public void evictHouseTest() {
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
                 userIDInput("22").
@@ -44,7 +44,7 @@ public class SettleEvictHousesTest extends BaseTest {
     @Test
     @DisplayName("Выселение из несуществующего дома")
     @Owner("Elena Dmitrienko")
-    public void evictNotHouse() {
+    public void evictNotHouseTest() {
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
                 userIDInput("22").
@@ -58,7 +58,7 @@ public class SettleEvictHousesTest extends BaseTest {
     @Test
     @DisplayName("Заселение в дом несуществующим пользователем")
     @Owner("Elena Dmitrienko")
-    public void settleNotUser() {
+    public void settleNotUserTest() {
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
                 userIDInput("101010101010").

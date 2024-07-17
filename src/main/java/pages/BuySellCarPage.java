@@ -3,6 +3,9 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.id;
@@ -17,6 +20,7 @@ public class BuySellCarPage {
     private final SelenideElement SELL_RADIOBUTTON = $(xpath("//input[@value='sellCar']"));
     private final SelenideElement CLICK_PUSH = $(xpath("//button[@class='tableButton btn btn-primary']"));
     private final SelenideElement RESULT_STATUS = $(xpath("//button[@class='status btn btn-secondary']"));
+    private static final SelenideElement STATUS_FOLD = $(xpath("//*[@id=\"root\"]/div/section/div/div/button[2]"));
 
     public BuySellCarPage goToBuySellCarMenu () {
         USERS_MENU.click();
@@ -49,16 +53,15 @@ public class BuySellCarPage {
     public BuySellCarPage push () {
         CLICK_PUSH.shouldBe(visible);
         CLICK_PUSH.click();
+        waitForStatusChange();
         return this;
     }
 
     public String getResultMessage() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         return RESULT_STATUS.shouldBe(Condition.visible).getText();
+    }
+
+    public void waitForStatusChange() {
+        STATUS_FOLD.shouldNotHave(text("Status: not pushed"), Duration.ofSeconds(10));
     }
 }

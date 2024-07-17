@@ -17,7 +17,7 @@ public class BuySellCarTest extends BaseTest {
     @Test
     @DisplayName("Успешная покупка автомобиля")
     @Owner("Elena Dmitrienko")
-    public void buyCar() {
+    public void buyCarTest() {
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -31,7 +31,7 @@ public class BuySellCarTest extends BaseTest {
     @Test
     @DisplayName("Успешная продажа автомобиля")
     @Owner("Elena Dmitrienko")
-    public void sellCar() {
+    public void sellCarTest() {
         String expectedMessage = "Status: Successfully pushed, code: 200";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -45,7 +45,7 @@ public class BuySellCarTest extends BaseTest {
     @Test
     @DisplayName("Продажа несуществующего автомобиля")
     @Owner("Elena Dmitrienko")
-    public void sellNotCar() {
+    public void sellNotCarTest() {
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("14").
@@ -59,7 +59,7 @@ public class BuySellCarTest extends BaseTest {
     @Test
     @DisplayName("Продажа автомобиля несуществующим пользователем")
     @Owner("Elena Dmitrienko")
-    public void buyNotUser() {
+    public void buyNotUserTest() {
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
         String actualMessage = buySellCarPage.goToBuySellCarMenu().
                 userIDInput("101010101010").
