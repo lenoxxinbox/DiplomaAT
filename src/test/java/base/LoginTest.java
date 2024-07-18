@@ -1,91 +1,108 @@
 package base;
 
 import io.qameta.allure.Owner;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.ConfigReader;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest extends BaseTest {
 
     private final static String USERNAME = ConfigReader.get("username");
     private final static String PASSWORD = ConfigReader.get("password");
+    private final static String SUCCESS_MESSAGE = "Successful authorization";
+    private final static String BAD_REQUEST_MESSAGE = "Bad request";
+    private final static String EMPTY_EMAIL_ERROR_MESSAGE = "email cannot be empty";
+    private final static String EMPTY_PASSWORD_ERROR_MESSAGE = "password cannot be empty";
+    private final static String INCORRECT_INPUT_MESSAGE = "Incorrect input data";
+    private final static String INCORRECT_EMAIL = "test@mail.com";
+    private final static String INCORRECT_PASSWORD = "test";
+    private final static String INVALID_EMAIL = "test12412*?";
+    private final static String INVALID_EMAIL_ERROR_MESSAGE = "incorrect Email";
+    private final static String INVALID_PASSWORD = "1";
+    private final static String INVALID_PASSWORD_ERROR_MESSAGE = "password length must be more than 3 symbols and less than 8 symbols";
 
     @Test
-    @DisplayName("Авторизация с корректными данными")
+    @DisplayName("Проверка авторизации с корректными данными")
     @Owner("Julia Sinkova")
     public void loginWithValidCredentials() {
-        String successMessage = "Successful authorization";
-        String alertMessage = loginPage.isPageOpen().login(USERNAME, PASSWORD).getAlertMessage();
-        Assertions.assertEquals(alertMessage, successMessage);
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login(USERNAME, PASSWORD)
+                .getAlertMessage();
+        assertEquals(SUCCESS_MESSAGE, alertMessage, "Сообщение об аутентификации должно быть корректным");
     }
 
     @Test
-    @DisplayName("Авторизация с пустыми полями")
+    @DisplayName("Проверка авторизации с пустыми полями")
     @Owner("Julia Sinkova")
     public void loginWithEmptyFields() {
-        String targetAlertMessage = "Incorrect input data";
-        String targetEmailErrorMessage = "email cannot be empty";
-        String targetPasswordErrorMessage = "password cannot be empty";
-        String alertMessage = loginPage.isPageOpen().login("", "").getAlertMessage();
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login("", "")
+                .getAlertMessage();
         String emailErrorMessage = loginPage.getEmailErrorMessage();
         String passwordErrorMessage = loginPage.getPasswordErrorMessage();
-        Assertions.assertEquals(alertMessage, targetAlertMessage);
-        Assertions.assertAll(
-                () -> Assertions.assertEquals(alertMessage, targetAlertMessage),
-                () -> Assertions.assertEquals(emailErrorMessage, targetEmailErrorMessage),
-                () -> Assertions.assertEquals(passwordErrorMessage, targetPasswordErrorMessage)
+
+        assertAll(
+                () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
+                () -> assertEquals(EMPTY_EMAIL_ERROR_MESSAGE, emailErrorMessage, "Сообщение рядом с полем email должно быть корректным"),
+                () -> assertEquals(EMPTY_PASSWORD_ERROR_MESSAGE, passwordErrorMessage, "Сообщение рядом с полем password должно быть корректным")
         );
     }
 
     @Test
-    @DisplayName("Авторизация с некорректным email")
+    @DisplayName("Проверка авторизации с некорректным email")
     @Owner("Julia Sinkova")
     public void loginWithIncorrectEmail() {
-        String incorrectEmail = "test@mail.com";
-        String errorMessage = "Bad request";
-        String alertMessage = loginPage.isPageOpen().login(incorrectEmail, PASSWORD).getAlertMessage();
-        Assertions.assertEquals(alertMessage, errorMessage);
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login(INCORRECT_EMAIL, PASSWORD)
+                .getAlertMessage();
+        assertEquals(BAD_REQUEST_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным");
     }
 
     @Test
-    @DisplayName("Авторизация с некорректным паролем")
+    @DisplayName("Проверка авторизации с некорректным паролем")
     @Owner("Julia Sinkova")
     public void loginWithIncorrectPassword() {
-        String incorrectPassword = "test";
-        String errorMessage = "Bad request";
-        String alertMessage = loginPage.isPageOpen().login(USERNAME, incorrectPassword).getAlertMessage();
-        Assertions.assertEquals(alertMessage, errorMessage);
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login(USERNAME, INCORRECT_PASSWORD)
+                .getAlertMessage();
+        assertEquals(BAD_REQUEST_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным");
     }
 
     @Test
-    @DisplayName("Авторизация с невалидным email")
+    @DisplayName("Проверка авторизации с невалидным email")
     @Owner("Julia Sinkova")
     public void loginWithInvalidEmail() {
-        String invalidEmail = "test";
-        String targetAlertMessage = "Incorrect input data";
-        String targetEmailErrorMessage = "incorrect Email";
-        String alertMessage = loginPage.isPageOpen().login(invalidEmail, PASSWORD).getAlertMessage();
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login(INVALID_EMAIL, PASSWORD)
+                .getAlertMessage();
         String emailErrorMessage = loginPage.getEmailErrorMessage();
-        Assertions.assertAll(
-                () -> Assertions.assertEquals(alertMessage, targetAlertMessage),
-                () -> Assertions.assertEquals(emailErrorMessage, targetEmailErrorMessage)
+        assertAll(
+                () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
+                () -> assertEquals(INVALID_EMAIL_ERROR_MESSAGE, emailErrorMessage, "Сообщение рядом с полем email должно быть корректным")
         );
 
     }
 
     @Test
-    @DisplayName("Авторизация с невалидным паролем")
+    @DisplayName("Проверка авторизации с невалидным паролем")
     @Owner("Julia Sinkova")
     public void loginWithInvalidPassword() {
-        String invalidPassword = "1";
-        String targetAlertMessage = "Incorrect input data";
-        String targetPasswordErrorMessage = "password length must be more than 3 symbols and less than 8 symbols";
-        String alertMessage = loginPage.isPageOpen().login(USERNAME, invalidPassword).getAlertMessage();
+        String alertMessage = loginPage
+                .isPageOpen()
+                .login(USERNAME, INVALID_PASSWORD)
+                .getAlertMessage();
         String passwordErrorMessage = loginPage.getPasswordErrorMessage();
-        Assertions.assertAll(
-                () -> Assertions.assertEquals(alertMessage, targetAlertMessage),
-                () -> Assertions.assertEquals(passwordErrorMessage, targetPasswordErrorMessage)
+        assertAll(
+                () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
+                () -> assertEquals(INVALID_PASSWORD_ERROR_MESSAGE, passwordErrorMessage, "Сообщение рядом с полем password должно быть корректным")
         );
 
     }
@@ -94,17 +111,16 @@ public class LoginTest extends BaseTest {
     @DisplayName("Проверка работы кнопки Logout")
     @Owner("Julia Sinkova")
     public void logoutButtonTest() {
-        String invalidEmail = "test";
         String emailInputValue = loginPage.isPageOpen()
-                .fillEmailInput(invalidEmail)
+                .fillEmailInput(INVALID_EMAIL)
                 .fillPasswordInput(PASSWORD)
                 .logout()
                 .isPageOpen()
                 .getEmailInputValue();
         String passwordInputValue = loginPage.getPasswordInputValue();
-        Assertions.assertAll(
-                () -> Assertions.assertEquals(emailInputValue, ""),
-                () -> Assertions.assertEquals(passwordInputValue, "")
+        assertAll(
+                () -> assertEquals("", emailInputValue, "Поле email должно быть пустым"),
+                () -> assertEquals("", passwordInputValue, "Поле password должно быть пустым")
         );
 
     }

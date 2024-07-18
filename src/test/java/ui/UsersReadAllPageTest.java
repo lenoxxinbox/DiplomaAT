@@ -6,8 +6,9 @@ import org.junit.jupiter.api.*;
 
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersReadAllPageTest extends BaseTest{
+public class UsersReadAllPageTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {

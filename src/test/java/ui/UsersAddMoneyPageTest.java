@@ -4,9 +4,8 @@ import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersAddMoneyPageTest extends BaseTest{
+public class UsersAddMoneyPageTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
@@ -31,7 +30,7 @@ public class UsersAddMoneyPageTest extends BaseTest{
     @DisplayName("Добавить денег несуществующему пользователю")
     public void findUserWithCarsNotExist() {
         String expectedMessage = "Status: AxiosError: Request failed with status code 404";
-        usersAddMoneyPage.addMoneyToUser("909090909090","200");
+        usersAddMoneyPage.addMoneyToUser("909090909090", "200");
         String actualMessage = usersAddMoneyPage.statusInfo();
         Assertions.assertEquals(actualMessage, expectedMessage);
     }
@@ -42,7 +41,7 @@ public class UsersAddMoneyPageTest extends BaseTest{
     @DisplayName("Ввод невалидных данных в поля User ID и Money")
     public void findUserWithCarsNotValid() {
         String expectedMessage = "Status: Incorrect input data";
-        usersAddMoneyPage.addMoneyToUser("-1","0");
+        usersAddMoneyPage.addMoneyToUser("-1", "0");
         String actualMessage = usersAddMoneyPage.statusInfo();
         Assertions.assertEquals(actualMessage, expectedMessage);
     }
