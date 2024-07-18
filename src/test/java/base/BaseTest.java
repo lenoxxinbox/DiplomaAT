@@ -1,44 +1,52 @@
 package base;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.*;
+import pages.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import pages.CreateNewUserPage;
+import pages.Cars.CarsCreateNew;
+import pages.Cars.CarsReadAll;
 import pages.LoginPage;
 import pages.MainPage;
 import utils.ConfigReader;
-import utils.DBConnection;
-
-import java.sql.SQLException;
-
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
+  
     protected static String BASE_URL = ConfigReader.get("baseURL");
+    protected static MainPage menu;
     protected static LoginPage loginPage;
-    protected static DBConnection dbConnection;
-    CreateNewUserPage createNewUserPage;
-    LoginPage loginPage;
-    MainPage menu;
+    protected static UsersAddMoneyPage usersAddMoneyPage;
+    protected static UsersReadAllPage usersReadAllPage;
+    protected static UsersReadUserWithCarsPage usersReadUserWithCarsPage;
+    protected static CarsReadAll carsReadAll;
+    protected static CarsCreateNew carsCreateNew;
+    protected static BuySellCarPage buySellCarPage;
+    protected static SettleEvictHousesPage settleEvictHousesPage;
 
     @BeforeAll
     public static void setUpBeforeClass() {
+      
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
-        dbConnection = new DBConnection();
     }
 
     @BeforeEach
     public void openBrowser() {
+      
         open(BASE_URL);
         menu = new MainPage();
         loginPage = new LoginPage();
-        createNewUserPage = new CreateNewUserPage();
-        menu = new MainPage();
-
-
+        usersAddMoneyPage = new UsersAddMoneyPage();
+        usersReadAllPage = new UsersReadAllPage();
+        usersReadUserWithCarsPage = new UsersReadUserWithCarsPage();
+        carsReadAll = new CarsReadAll();
+        carsCreateNew = new CarsCreateNew();
+        buySellCarPage = new BuySellCarPage();
+        settleEvictHousesPage = new SettleEvictHousesPage();
     }
 
     @AfterEach
