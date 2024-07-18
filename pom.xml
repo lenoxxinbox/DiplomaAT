@@ -9,11 +9,16 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.26.0</allure.version>
         <aspectj.version>1.9.22</aspectj.version>
+        <selenide.version>7.3.2</selenide.version>
+        <juju.version>5.10.2</juju.version>
+        <restash.version>5.4.0</restash.version>
+        <surefire.version>3.2.3</surefire.version>
+        <alluremvn.version>2.12.0</alluremvn.version>
     </properties>
 
     <dependencyManagement>
@@ -33,13 +38,13 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>7.3.2</version>
+            <version>${selenide.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
+            <version>${juju.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
@@ -48,17 +53,11 @@
             <artifactId>allure-junit5</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.4.0</version>
+            <version>${restash.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -68,7 +67,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>${surefire.version}</version>
                 <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -85,9 +84,8 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version>
+                <version>${alluremvn.version}</version>
             </plugin>
         </plugins>
     </build>
-
 </project>
