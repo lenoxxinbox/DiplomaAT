@@ -24,6 +24,8 @@ public class BaseTest {
     protected static UsersReadUserWithCarsPage usersReadUserWithCarsPage;
     protected static CarsReadAll carsReadAll;
     protected static CarsCreateNew carsCreateNew;
+    protected static BuySellCarPage buySellCarPage;
+    protected static SettleEvictHousesPage settleEvictHousesPage;
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -43,6 +45,8 @@ public class BaseTest {
         usersReadUserWithCarsPage = new UsersReadUserWithCarsPage();
         carsReadAll = new CarsReadAll();
         carsCreateNew = new CarsCreateNew();
+        buySellCarPage = new BuySellCarPage();
+        settleEvictHousesPage = new SettleEvictHousesPage();
     }
 
     @AfterEach
