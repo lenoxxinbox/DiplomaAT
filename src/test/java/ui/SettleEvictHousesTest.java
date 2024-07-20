@@ -1,6 +1,7 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Проверка заселения и выселения пользователей")
 public class SettleEvictHousesTest extends BaseTest {
 
     static final String SUCCESS_MESSAGE = "Status: Successfully pushed, code: 200";
