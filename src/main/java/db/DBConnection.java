@@ -31,14 +31,14 @@ public class DBConnection {
         String firstName = null;
         String secondName = null;
         int age = 0;
-        int money = 0;
+        double money = 0.0;
         boolean isMale = false;
 
         while (result.next()) {
             firstName = result.getString("first_name");
             secondName = result.getString("second_name");
             age = result.getInt("age");
-            money = result.getInt("money");
+            money = result.getDouble("money");
             isMale = result.getBoolean("sex");
         }
         return new User(firstName, secondName, age, money, isMale);

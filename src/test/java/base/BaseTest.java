@@ -1,5 +1,6 @@
 package base;
 
+import api_services.ApiConnection;
 import com.codeborne.selenide.Configuration;
 import db.DBConnection;
 import org.junit.jupiter.api.AfterEach;
@@ -21,6 +22,7 @@ public class BaseTest {
     protected static String DB_URL = ConfigReader.get("dbUrl");
     protected static String DB_USER = ConfigReader.get("dbUser");
     protected static String DB_PASSWORD = ConfigReader.get("dbPassword");
+    protected static String API_URL = ConfigReader.get("apiUrl");
     protected static MainPage menu;
     protected static LoginPage loginPage;
     protected static UsersAddMoneyPage usersAddMoneyPage;
@@ -34,6 +36,7 @@ public class BaseTest {
     protected static CreateHousePage createHousePage;
     protected static FindHousePage findHousePage;
     protected static DBConnection dbConnection;
+    protected static ApiConnection apiConnection;
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -59,6 +62,8 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         findHousePage = new FindHousePage();
         dbConnection = new DBConnection();
+        apiConnection = new ApiConnection(API_URL);
+
         try {
             dbConnection.connect(DB_URL, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {

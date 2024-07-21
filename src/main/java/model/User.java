@@ -1,13 +1,19 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class User {
     private String firstName;
     private String secondName;
     private int age;
-    private int money;
+    private double money;
+    @JsonIgnore
     private boolean isMale;
 
-    public User(String firstName, String secondName, int age, int money, boolean isMale) {
+    public User(String firstName, String secondName, int age, double money, boolean isMale) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.age = age;
@@ -27,11 +33,27 @@ public class User {
         return age;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
+    @JsonIgnore
     public boolean isMale() {
         return isMale;
+    }
+
+    @JsonProperty("sex")
+    public String getSex() {
+        return isMale ? "MALE" : "FEMALE";
+    }
+
+    public String toJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -6,6 +6,7 @@ import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.ConfigReader;
 
 import java.sql.SQLException;
 
@@ -20,7 +21,8 @@ public class CreateNewUserTest extends BaseTest {
     public static final int NEGATIVE_AGE_NUM = -1;
     public static final int MONEY_NUM = 1000;
     public static final boolean IS_MALE = true;
-
+    private final static String USERNAME = ConfigReader.get("username");
+    private final static String PASSWORD = ConfigReader.get("password");
 
     @BeforeEach
     public void login() {
@@ -120,12 +122,17 @@ public class CreateNewUserTest extends BaseTest {
             e.printStackTrace();
         }
         User finalUserFromDB = userFromDB;
+        // удаление пользователя через API
+        apiConnection.authorize(USERNAME, PASSWORD);
+        int code = apiConnection.deleteUser(Integer.parseInt(id)).getStatusCode();
+        
         assertAll(() -> assertTrue(isStatusMessageCorrect, "status message should be correct"),
                 () -> assertEquals(FIRST_NAME_TEXT, finalUserFromDB.getFirstName(), "Значения поля first_name при создании и в БД должны совпадать"),
                 () -> assertEquals(SECOND_NAME_TEXT, finalUserFromDB.getSecondName(), "Значения поля second_name при создании и в БД должны совпадать"),
                 () -> assertEquals(AGE_NUM, finalUserFromDB.getAge(), "Значения поля age при создании и в БД должны совпадать"),
                 () -> assertEquals(MONEY_NUM, finalUserFromDB.getMoney(), "Значения поля money при создании и в БД должны совпадать"),
-                () -> assertEquals(IS_MALE, finalUserFromDB.isMale(), "Значения поля sex при создании и в БД должны совпадать")
+                () -> assertEquals(IS_MALE, finalUserFromDB.isMale(), "Значения поля sex при создании и в БД должны совпадать"),
+                () -> assertEquals(code, 1)
 
         );
     }
