@@ -1,4 +1,4 @@
-package pojo;
+package utils.pojo;
 
 import lombok.Data;
 import uk.co.jemos.podam.common.PodamIntValue;

@@ -1,5 +1,6 @@
 package db;
 
+import model.Car;
 import model.User;
 import model.House;
 
