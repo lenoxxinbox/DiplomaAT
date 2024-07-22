@@ -58,4 +58,24 @@ public class DBConnection {
         }
         return new House(floorCount, parkingPlaces, price);
     }
+
+    public Car getCarById(String id) throws SQLException {
+        String query = "SELECT * FROM car WHERE id = " + id;
+        ResultSet result = executeQuery(query);
+        String  engine_type_id = null;
+        String mark = null;
+        String model = null;
+        Double price = null;
+
+        while (result.next()) {
+            engine_type_id = result.getString("engine_type_id");
+            if ("2".equals(engine_type_id)){
+                engine_type_id = "Diesel";
+            }
+            mark = result.getString("mark");
+            model = result.getString("model");
+            price = result.getDouble("price");
+        }
+        return new Car(engine_type_id, mark, model, price);
+    }
 }
