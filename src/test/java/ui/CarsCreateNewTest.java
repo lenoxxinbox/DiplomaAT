@@ -47,6 +47,7 @@ public class CarsCreateNewTest extends BaseTest {
                 () -> assertEquals(STATUS_SUCCESSFUL, receivedStatus, "Статус не соответствует ожидаемому"),
                 () -> assertEquals(firstID, newId, "Id нового автомобиля не получен")
         );
+
         Car createdCar = dbConnection.getCarById(newId);
         assertAll(
                 () -> assertEquals("Diesel", createdCar.getEngineType(), "Тип двигателя не соответствует ожидаемому"),
