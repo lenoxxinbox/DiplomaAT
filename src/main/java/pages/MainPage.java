@@ -24,7 +24,7 @@ public class MainPage {
         CARS_READ_ALL.click();
     }
 
-    public static void openCreateNewUserPage() {
+    public void openCreateNewUserPage() {
         USERS_LINK.click();
         CREATE_NEW_USER_LINK.shouldBe(visible);
         CREATE_NEW_USER_LINK.click();
