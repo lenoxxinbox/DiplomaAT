@@ -1,13 +1,13 @@
-package pages;
+package pages.main;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.houses.SettleEvictHousesPage;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.openqa.selenium.By.xpath;
 
 public class MainPage {
-
     private final static SelenideElement USERS_LINK = $x("//a[text()='Users']");
     private final static SelenideElement CREATE_NEW_USER_LINK = $x("//a[@href='#/create/user']");
     private final static SelenideElement HOUSES_MENU = $x("//a[contains(text(), 'Houses')]");

@@ -16,7 +16,6 @@ public class UsersReadAllPageTest extends BaseTest {
         menu.openCarsReadAll();
     }
 
-
     @Test
     @Order(1)
     @Owner("Lapidus Vyacheslav")
@@ -168,5 +167,4 @@ public class UsersReadAllPageTest extends BaseTest {
         String reloadedId = usersReadAllPage.getDefaultId();
         assertEquals(defaultId, reloadedId, "Id по умолчанию должен совпадать с Id после перезагрузки");
     }
-
 }

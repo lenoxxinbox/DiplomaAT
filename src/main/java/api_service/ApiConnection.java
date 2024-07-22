@@ -1,11 +1,9 @@
-package api_services;
+package api_service;
 
 import io.restassured.response.Response;
 import model.User;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class ApiConnection {
@@ -33,7 +31,6 @@ public class ApiConnection {
                 .response();
 
         token = response.jsonPath().getString("access_token");
-
     }
 
 
@@ -98,5 +95,4 @@ public class ApiConnection {
     public Response deleteUser(int id) {
         return this.delete(url + "user/" + id);
     }
-
 }

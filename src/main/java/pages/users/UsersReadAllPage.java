@@ -1,16 +1,12 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
 import org.openqa.selenium.By;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-
 import static java.lang.Thread.sleep;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -27,7 +23,6 @@ public class UsersReadAllPage {
     private final SelenideElement SORT_BY_MONEY_BUTTON = $(xpath("//button[@class='btn btn-secondary'][7]"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement READ_ALL_USERS_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
-
 
     public UsersReadAllPage goToReadAllUsersMenu() {
         USERS_MENU.click();
@@ -56,7 +51,6 @@ public class UsersReadAllPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         SORT_BY_ID_BUTTON.click();
         return this;
@@ -238,8 +232,4 @@ public class UsersReadAllPage {
         String DefaultId = $(By.xpath("//tbody/tr[1]/td[1]")).getText();
         return DefaultId;
     }
-
-
 }
-
-

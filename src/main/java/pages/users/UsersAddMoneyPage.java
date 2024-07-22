@@ -1,7 +1,6 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Selenide.$;
 import static java.lang.Thread.sleep;
 import static org.openqa.selenium.By.id;
@@ -43,5 +42,4 @@ public class UsersAddMoneyPage {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
     }
-
 }

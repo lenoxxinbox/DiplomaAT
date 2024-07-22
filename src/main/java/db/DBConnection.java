@@ -3,7 +3,6 @@ package db;
 import model.Car;
 import model.User;
 import model.House;
-
 import java.sql.*;
 
 public class DBConnection {

@@ -1,9 +1,8 @@
-package pages;
+package pages.main;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Alert;
 import utils.ConfigReader;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -58,7 +57,6 @@ public class LoginPage {
         fillEmailInput(username).fillPasswordInput(password);
         LOGIN_BUTTON.click();
         return this;
-
     }
 
     public String getAlertMessage() {

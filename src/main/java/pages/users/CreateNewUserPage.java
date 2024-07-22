@@ -1,12 +1,10 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -28,7 +26,6 @@ public class CreateNewUserPage {
         PUSH_BUTTON.shouldBe(visible);
         return this;
     }
-
 
     public CreateNewUserPage createUser(String firstName, String secondName, int age, int money, boolean isMale) {
 
@@ -87,7 +84,6 @@ public class CreateNewUserPage {
         return this;
     }
 
-
     public boolean isStatusMessageCorrect(String expectedMessage) {
         STATUS_BUTTON.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
         return STATUS_BUTTON.getText().equals(expectedMessage);
@@ -97,7 +93,5 @@ public class CreateNewUserPage {
         NEW_USER_BUTTON.shouldBe(visible);
         String text = NEW_USER_BUTTON.getText();
         return text.replaceAll("^.*?(\\d+)$", "$1");
-
     }
-
 }
