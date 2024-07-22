@@ -2,10 +2,13 @@ package base;
 
 import api_services.ApiConnection;
 import com.codeborne.selenide.Configuration;
-import db.DBConnection;
+import dbconnection.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.houses.HousesReadAll;
 import pages.*;
 import pages.Cars.CarsCreateNew;
 import pages.Cars.CarsReadAll;
@@ -17,7 +20,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
-
     protected static String BASE_URL = ConfigReader.get("baseURL");
     protected static String DB_URL = ConfigReader.get("dbUrl");
     protected static String DB_USER = ConfigReader.get("dbUser");
@@ -30,6 +32,7 @@ public class BaseTest {
     protected static UsersReadUserWithCarsPage usersReadUserWithCarsPage;
     protected static CarsReadAll carsReadAll;
     protected static CarsCreateNew carsCreateNew;
+    protected static HousesReadAll housesReadAll;
     protected static CreateNewUserPage createNewUserPage;
     protected static BuySellCarPage buySellCarPage;
     protected static SettleEvictHousesPage settleEvictHousesPage;
@@ -37,6 +40,7 @@ public class BaseTest {
     protected static FindHousePage findHousePage;
     protected static DBConnection dbConnection;
     protected static ApiConnection apiConnection;
+
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -56,6 +60,7 @@ public class BaseTest {
         usersReadUserWithCarsPage = new UsersReadUserWithCarsPage();
         carsReadAll = new CarsReadAll();
         carsCreateNew = new CarsCreateNew();
+        housesReadAll = new HousesReadAll();
         buySellCarPage = new BuySellCarPage();
         settleEvictHousesPage = new SettleEvictHousesPage();
         createNewUserPage = new CreateNewUserPage();
@@ -71,6 +76,7 @@ public class BaseTest {
         }
     }
 
+
     @AfterEach
     public void tearDownAfterClass() {
         closeWebDriver();
@@ -81,3 +87,4 @@ public class BaseTest {
         }
     }
 }
+
