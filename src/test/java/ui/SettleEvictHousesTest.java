@@ -1,71 +1,71 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@Feature("Проверка заселения и выселения пользователей")
 public class SettleEvictHousesTest extends BaseTest {
+
+    static final String SUCCESS_MESSAGE = "Status: Successfully pushed, code: 200";
+    static final String NOT_FOUND_MESSAGE = "Status: AxiosError: Request failed with status code 404";
+
     @BeforeEach
     public void inTest() {
         loginPage.fullAuthorization();
+        menu.goToSettleEvictHousesMenu();
     }
 
     @Test
-    @DisplayName("Успешное заселение в дом")
+    @DisplayName("Проверка успешного заселения пользователя в дом")
     @Owner("Elena Dmitrienko")
     public void settleHouseTest() {
-        String expectedMessage = "Status: Successfully pushed, code: 200";
-        String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
-                userIDInput("22").
-                houseIDInput("1").
-                settle().
-                push().
-                getResultMessage();
-        Assertions.assertEquals(expectedMessage, actualMessage);
+        assertEquals(settleEvictHousesPage
+                .userIDInput("22")
+                .houseIDInput("1")
+                .settle()
+                .push()
+                .getResultMessage(), SUCCESS_MESSAGE, "Не удалось заселить пользователя в дом");
     }
 
     @Test
-    @DisplayName("Успешное выселение из дома")
+    @DisplayName("Проверка успешного выселения пользователя из дома")
     @Owner("Elena Dmitrienko")
     public void evictHouseTest() {
-        String expectedMessage = "Status: Successfully pushed, code: 200";
-        String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
-                userIDInput("22").
-                houseIDInput("1").
-                evict().
-                push().
-                getResultMessage();
-        Assertions.assertEquals(expectedMessage, actualMessage);
+        assertEquals(settleEvictHousesPage
+                .userIDInput("22")
+                .houseIDInput("1")
+                .settle()
+                .push()
+                .getResultMessage(), SUCCESS_MESSAGE, "Не удалось выселить пользователя из дома");
     }
 
     @Test
-    @DisplayName("Выселение из несуществующего дома")
+    @DisplayName("Проверка сообщения об ошибке при выселении пользователя из несуществующего дома")
     @Owner("Elena Dmitrienko")
     public void evictNotHouseTest() {
-        String expectedMessage = "Status: AxiosError: Request failed with status code 404";
-        String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
-                userIDInput("22").
-                houseIDInput("101010101010").
-                evict().
-                push().
-                getResultMessage();
-        Assertions.assertEquals(expectedMessage, actualMessage);
+        assertEquals(settleEvictHousesPage
+                .userIDInput("22")
+                .houseIDInput("101010101010")
+                .evict()
+                .push()
+                .getResultMessage(), NOT_FOUND_MESSAGE, "Нет сообщения об ошибке");
     }
 
     @Test
-    @DisplayName("Заселение в дом несуществующим пользователем")
+    @DisplayName("Проверка сообщения об ошибке при заселении несуществующего пользователя в дом")
     @Owner("Elena Dmitrienko")
     public void settleNotUserTest() {
-        String expectedMessage = "Status: AxiosError: Request failed with status code 404";
-        String actualMessage = settleEvictHousesPage.goToSettleEvictHousesMenu().
-                userIDInput("101010101010").
-                houseIDInput("1").
-                settle().
-                push().
-                getResultMessage();
-        Assertions.assertEquals(expectedMessage, actualMessage);
+        assertEquals(settleEvictHousesPage
+                .userIDInput("101010101010")
+                .houseIDInput("1")
+                .settle()
+                .push()
+                .getResultMessage(), NOT_FOUND_MESSAGE, "Нет сообщения об ошибке");
     }
 }
