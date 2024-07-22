@@ -14,19 +14,11 @@ import static org.openqa.selenium.By.xpath;
 public class SettleEvictHousesPage {
     private final SelenideElement userID = $(id("id_send"));
     private final SelenideElement houseID = $(id("house_send"));
-    private final SelenideElement USER_MENU = $(xpath("//a[text()='Users']"));
-    private final SelenideElement SETTLE_EVICT_HOUSES_MENU = $(xpath("//a[text()='Settle to house']"));
     private final SelenideElement SETTLE_RADIOBUTTON = $(xpath("//input[@value='settle']"));
     private final SelenideElement EVICT_RADIOBUTTON = $(xpath("//input[@value='evict']"));
     private final SelenideElement CLICK_PUSH = $(xpath("//button[@class='tableButton btn btn-primary']"));
     private final SelenideElement RESULT_STATUS = $(xpath("//button[@class='status btn btn-secondary']"));
     private static final SelenideElement STATUS_FOLD = $(xpath("//*[@id=\"root\"]/div/section/div/div/button[2]"));
-
-    public SettleEvictHousesPage goToSettleEvictHousesMenu () {
-        USER_MENU.click();
-        SETTLE_EVICT_HOUSES_MENU.click();
-        return this;
-    }
 
     public SettleEvictHousesPage userIDInput(String id) {
         userID.click();
