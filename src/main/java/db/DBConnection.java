@@ -43,4 +43,18 @@ public class DBConnection {
         }
         return new User(firstName, secondName, age, money, isMale);
     }
+
+        public House getHouseById(String id) throws SQLException {
+        String query = "SELECT  h.id as house_id, h.floor_count, SUM (places_count) as places_count, h.price FROM parking_place p join house h ON h.id = p.house_id where  h.id =" + id + "group by h.id" ;
+        ResultSet result = executeQuery(query);
+        String floorCount = null;
+        String parkingPlaces = null;
+        String price = null;
+        while (result.next()) {
+            floorCount = result.getString("floor_count");
+            parkingPlaces = result.getString("places_count");
+            price = result.getString("price");
+        }
+        return new House(floorCount, parkingPlaces, price);
+    }
 }
