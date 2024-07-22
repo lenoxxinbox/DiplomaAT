@@ -1,7 +1,8 @@
-package pages.Cars;
+package pages.cars;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
@@ -19,7 +20,9 @@ public class CarsCreateNew {
     private static final SelenideElement PUSH_TO_API_BUTTON = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
     private static final SelenideElement STATUS_FOLD = $x("//*[@id=\"root\"]/div/section/div/div/button[2]");
     private static final SelenideElement NEW_ID_FOLD = $x("//*[@id=\"root\"]/div/section/div/div/button[3]");
+    private static final String BASIC_STATUS = "Status: not pushed";
 
+    @Step("Проверяем открытие страницы")
     public CarsCreateNew isOpenPage() {
         try {
             PUSH_TO_API_BUTTON.shouldBe(Condition.visible);
@@ -29,7 +32,8 @@ public class CarsCreateNew {
         return this;
     }
 
-    public CarsCreateNew createNewCar(String engineType, String mark, String model, String price){
+    @Step("Создание автомобиля")
+    public CarsCreateNew createNewCar(String engineType, String mark, String model, Double price) {
         enterEngineType(engineType);
         enterMark(mark);
         enterModel(model);
@@ -39,46 +43,62 @@ public class CarsCreateNew {
         return this;
     }
 
+    @Step("Ввод типа двигателя")
     public CarsCreateNew enterEngineType(String engineType) {
         ENGINE_TYPE_FOLD.sendKeys(engineType);
         return this;
     }
 
+    @Step("Ввод марки автомобиля")
     public CarsCreateNew enterMark(String mark) {
         MARK_FOLD.sendKeys(mark);
         return this;
     }
 
+    @Step("Ввод типа модели")
     public CarsCreateNew enterModel(String model) {
         MODEL_FOLD.sendKeys(model);
         return this;
     }
 
-    public CarsCreateNew enterPrice(String price) {
-        PRICE_FOLD.sendKeys(price);
+    @Step("Ввод цены")
+    public CarsCreateNew enterPrice(Double price) {
+        if (price != null) {
+            PRICE_FOLD.sendKeys(price.toString());
+        }
         return this;
     }
 
+    @Step("Нажатие на кнопку Push to Api")
     public CarsCreateNew clickPushButton() {
-        PUSH_TO_API_BUTTON.shouldBe(Condition.visible).click();
+        PUSH_TO_API_BUTTON
+                .shouldBe(Condition.visible)
+                .click();
         STATUS_FOLD.shouldBe(Condition.visible);
         return this;
     }
 
-    public String getStatusText(){
-        String status = STATUS_FOLD.shouldBe(visible).getText();
+    @Step("Получаем текст в поле статуса")
+    public String getStatusText() {
+        String status = STATUS_FOLD
+                .shouldBe(visible)
+                .getText();
         return status;
     }
 
+    @Step("Получение ID нового автомобиля")
     public String getNewId() {
-        String newIDText = NEW_ID_FOLD.shouldBe(Condition.visible).getText();
+        String newIDText = NEW_ID_FOLD
+                .shouldBe(Condition.visible)
+                .getText();
         String newID = newIDText.split(": ")[1].trim();
         return newID;
 
     }
 
     public CarsCreateNew waitForStatusChange() {
-        STATUS_FOLD.shouldNotHave(text("Status: not pushed"), Duration.ofSeconds(10));
+        STATUS_FOLD.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
         return this;
     }
 }
+

@@ -1,8 +1,9 @@
-package pages.Cars;
+package pages.cars;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -24,52 +25,70 @@ public class CarsReadAll {
     private static final SelenideElement SORT_BY_PRICE = $x("//*[@id=\"root\"]/div/section/div/div/button[7]");
     private static final SelenideElement TABLE_BODY = $x("//table/tbody");
 
-
     WebDriver driver = WebDriverRunner.getWebDriver();
     Actions actions = new Actions(driver);
 
+    @Step("Клик на кнопку сортировку по ID")
     public CarsReadAll clickSortById() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_ID.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Клик на кнопку сортировку по типу двигателя")
     public CarsReadAll clickSortByEngineType() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_ENGINE_TYPE.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Клик на кнопку сортировку по марке")
     public CarsReadAll clickSortByMark() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_MARK.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Клик на кнопку сортировку по модели")
     public CarsReadAll clickSortByModel() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_MODEL.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Клик на кнопку сортировку по цене")
     public CarsReadAll clickSortByPrice() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = SORT_BY_PRICE.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Клик на кнопку Reload")
     public CarsReadAll clickReloadButton() {
         TABLE_BODY.shouldBe(visible);
         SelenideElement element = RELOAD_BUTTON.shouldBe(visible);
-        actions.click(element).perform();
+        actions
+                .click(element)
+                .perform();
         return this;
     }
 
+    @Step("Получение List по полю ID")
     public CarsReadAll getListForId(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[1]")
                 .shouldHave(sizeGreaterThan(0));
@@ -77,6 +96,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Получение List по полю типу двигателя")
     public CarsReadAll getListForEngineType(boolean ascending){
         ElementsCollection list = $$x("//tbody//tr//td[2]")
                 .shouldHave(sizeGreaterThan(0));
@@ -84,6 +104,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Получение List по полю марке")
     public CarsReadAll getListForMark(boolean ascending){
         ElementsCollection list = $$x("//tbody//tr//td[3]")
                 .shouldHave(sizeGreaterThan(0));
@@ -91,6 +112,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Получение List по полю модели")
     public CarsReadAll getListForModel(boolean ascending){
         ElementsCollection list = $$x("//tbody//tr//td[4]")
                 .shouldHave(sizeGreaterThan(0));
@@ -98,6 +120,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Получение List по полю цене")
     public CarsReadAll getListForPrice(boolean ascending){
         ElementsCollection list = $$x("//tbody//tr//td[5]")
                 .shouldHave(sizeGreaterThan(0));
@@ -105,6 +128,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Создание и сортировка коллекции по полученному List")
     private void collectList(boolean isNumeric, boolean ascending, ElementsCollection list) {
         if (isNumeric) {
             List<Long> sortedList = new ArrayList<>();
@@ -126,6 +150,7 @@ public class CarsReadAll {
             checkSortingOrder(sortedList, ascending);
         }
     }
+
 
     private <T extends Comparable<? super T>> void checkSortingOrder(List<T> valueList, boolean ascending) {
         if (valueList.isEmpty()) {
@@ -166,6 +191,7 @@ public class CarsReadAll {
         return this;
     }
 
+    @Step("Получение первого ID в таблице")
     public String getFirstId(){
         String firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]")).getText();
         TABLE_BODY.shouldBe(visible);

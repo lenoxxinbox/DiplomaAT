@@ -1,4 +1,4 @@
-package UI;
+package ui;
 
 import base.BaseTest;
 import io.qameta.allure.Owner;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CarsReadAllTests extends BaseTest {
+public class CarsReadAllTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
@@ -124,11 +124,10 @@ public class CarsReadAllTests extends BaseTest {
     @Order(11)
     @Owner("Kotelin Kirill")
     @DisplayName("Проверка кнопки Reload")
-    public void testReloadButton() {
+    public void checkReloadButton() {
         String initialFirstRowId = carsReadAll.getFirstId();
-        carsReadAll.clickSortById()
-                .clickReloadButton();
-        boolean isIdSame = carsReadAll.isIdCorrect(initialFirstRowId);
-        assertTrue(isIdSame, "The first row ID should match after reload");
+        assertTrue(carsReadAll.clickSortById()
+                .clickReloadButton()
+                .isIdCorrect(initialFirstRowId), "The first row ID should match after reload");
     }
 }
