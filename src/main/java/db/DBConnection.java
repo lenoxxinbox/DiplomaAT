@@ -1,6 +1,7 @@
 package db;
 
 import model.User;
+import model.House;
 
 import java.sql.*;
 
