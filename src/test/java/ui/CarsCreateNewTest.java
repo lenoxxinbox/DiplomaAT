@@ -110,7 +110,7 @@ public class CarsCreateNewTest extends BaseTest {
 
 
     @Test
-    @Order(10)
+    @Order(8)
     @DisplayName("Проверка создания автомобиля с отрицательными числами в поле Price")
     public void checkNegativeNumbersPriceFold() {
         assertEquals(carsCreateNew
@@ -120,7 +120,7 @@ public class CarsCreateNewTest extends BaseTest {
     }
 
     @Test
-    @Order(11)
+    @Order(9)
     @DisplayName("Проверка создания автомобиля с невалидным EngineType")
     public void checkInvalidEngineTypeFold() {
         assertEquals(carsCreateNew

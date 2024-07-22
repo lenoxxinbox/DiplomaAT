@@ -79,7 +79,6 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
-            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
@@ -115,7 +114,6 @@
             <groupId>uk.co.jemos.podam</groupId>
             <artifactId>podam</artifactId>
             <version>${podam.version}</version>
-            <scope>test</scope>
         </dependency>
         <!-- PostgreSQL -->
         <dependency>
