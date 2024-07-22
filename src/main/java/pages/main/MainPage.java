@@ -1,4 +1,4 @@
-package pages;
+package pages.main;
 
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.visible;
@@ -32,7 +32,7 @@ public class MainPage {
         CARS_CREATE_NEW.shouldBe(visible).click();
     }
 
-    public void openCarsReadAll() {
+    public void openUsersReadAll() {
         USERS_DROPDOWN.shouldBe(visible).click();
         USERS_READ_ALL.shouldBe(visible).click();
     }

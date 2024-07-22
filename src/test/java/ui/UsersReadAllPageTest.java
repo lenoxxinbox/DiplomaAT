@@ -4,17 +4,19 @@ import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
-import static java.lang.Thread.sleep;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersReadAllPageTest extends BaseTest{
 
     @BeforeEach
     public void setUp() {
-        loginPage.isPageOpen().fullAuthorization();
-        menu.openCarsReadAll();
+        loginPage
+                .isPageOpen()
+                .fullAuthorization();
+        menu
+                .openUsersReadAll();
     }
-
 
     @Test
     @Order(1)
@@ -149,23 +151,10 @@ public class UsersReadAllPageTest extends BaseTest{
     @DisplayName("Проверка кнопки Reload")
     public void checkReloadButton() {
         String defaultId = usersReadAllPage.getDefaultId();
-        usersReadAllPage.sortById();
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        usersReadAllPage.reload();
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        String reloadedId = usersReadAllPage.getDefaultId();
-        assertEquals(defaultId, reloadedId, "Id по умолчанию должен совпадать с Id после перезагрузки");
+        assertTrue(usersReadAllPage
+                .sortById()
+                .reload()
+                .isIdCorrect(defaultId), "ID первой строки должен совпадать после перезагрузки");
     }
-
 }
+

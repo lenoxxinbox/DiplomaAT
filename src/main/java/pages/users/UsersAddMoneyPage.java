@@ -1,4 +1,4 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -24,24 +24,23 @@ public class UsersAddMoneyPage {
     public UsersAddMoneyPage addMoneyToUser(String id, String money) {
         USER_ID.sendKeys(id);
         SEND_MONEY.sendKeys(money);
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         PUSH_BUTTON.click();
-
-        try {
-            sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForStatusChange();
         return this;
     }
 
     public String statusInfo() {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
+    }
+
+    public UsersAddMoneyPage waitForStatusChange() {
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
 }
