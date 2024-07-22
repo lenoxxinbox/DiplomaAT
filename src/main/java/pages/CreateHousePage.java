@@ -3,8 +3,6 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -45,15 +43,6 @@ public class CreateHousePage {
         return NEW_ID_HOUSE.getText();
     }
 
-    public String generatorId(String str) {
-        Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-            System.out.println(matcher.group());
-        }
-        return str;
-    }
-
     public CreateHousePage createHouse(String floors, String price, String places1,
                                        String places2, String places3, String places4) {
         FLOORS_HOUSE.sendKeys(floors);
@@ -67,7 +56,7 @@ public class CreateHousePage {
             $(STATUS_FIND_INVALID).shouldBe(visible, Duration.ofSeconds(10));
         else {
             $(STATUS_FIND_SUCCESS).shouldBe(visible, Duration.ofSeconds(10));
-            id = generatorId(getNewId());
+            id = getNewId().replaceAll("\\D+", "");
         }
         return this;
     }
