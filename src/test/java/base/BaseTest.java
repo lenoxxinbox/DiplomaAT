@@ -1,13 +1,11 @@
 package base;
 
 import api_service.ApiConnection;
-import api_service.CarRequest;
 import com.codeborne.selenide.Configuration;
 import db.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import pages.users.UsersReadAllPage;
 import pages.cars.BuySellCarPage;
 import pages.cars.CarsCreateNew;
 import pages.cars.CarsReadAll;
@@ -18,6 +16,7 @@ import pages.main.LoginPage;
 import pages.main.MainPage;
 import pages.users.CreateNewUserPage;
 import pages.users.UsersAddMoneyPage;
+import pages.users.UsersReadAllPage;
 import pages.users.UsersReadUserWithCarsPage;
 import utils.ConfigReader;
 
@@ -91,4 +90,3 @@ public class BaseTest {
         }
     }
 }
-

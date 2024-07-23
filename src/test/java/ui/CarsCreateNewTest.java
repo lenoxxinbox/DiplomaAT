@@ -4,11 +4,11 @@ import base.BaseTest;
 import io.qameta.allure.Feature;
 import model.Car;
 import org.junit.jupiter.api.*;
-import utils.ConfigReader;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Feature("Проверка создания нового автомобиля на UI")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

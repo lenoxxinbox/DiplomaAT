@@ -132,7 +132,6 @@ public class CreateNewUserTest extends BaseTest {
                 () -> assertEquals(MONEY_NUM, finalUserFromDB.getMoney(), "Значения поля money при создании и в БД должны совпадать"),
                 () -> assertEquals(IS_MALE, finalUserFromDB.isMale(), "Значения поля sex при создании и в БД должны совпадать"),
                 () -> assertEquals(code, 204, "Созданный пользователь должен быть удален")
-
         );
     }
 }

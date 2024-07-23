@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+
 @Feature("Проверка наличия пользователя с авто с помощью API-запросов")
 public class ApiUsersReadUserWithCarsPageTest {
     public String toAuthorize() {

@@ -99,19 +99,19 @@ public class UsersReadAllPage {
     }
 
     public UsersReadAllPage getListForAge(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[4]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
 
     public UsersReadAllPage getListForSex(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[5]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
 
     public UsersReadAllPage getListForMoney(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[6]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
