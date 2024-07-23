@@ -1,6 +1,7 @@
 package api;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.restassured.response.Response;
 import model.User;
@@ -13,6 +14,7 @@ import utils.ConfigReader;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Проверка создания пользователя с помощью API запросов")
 public class UserCRUDTest extends BaseTest {
     private final static String USERNAME = ConfigReader.get("username");
     private final static String PASSWORD = ConfigReader.get("password");
@@ -24,7 +26,8 @@ public class UserCRUDTest extends BaseTest {
     public void setUp() {
         apiConnection.authorize(USERNAME, PASSWORD);
     }
-//     Тесты нужно запускать друг за другом, так как для редактирования и удаления используется пользователь
+
+    //     Тесты нужно запускать друг за другом, так как для редактирования и удаления используется пользователь
 //     созданный в тесте createUser
     @Test
     @DisplayName("Проверка создания пользователя через API")
