@@ -11,13 +11,13 @@ import pages.CreateHousePage;
 import pages.CreateNewUserPage;
 import pages.FindHousePage;
 import pages.LoginPage;
-import pages.MainPage;
 import pages.SettleEvictHousesPage;
-import pages.UsersAddMoneyPage;
-import pages.UsersReadAllPage;
-import pages.UsersReadUserWithCarsPage;
+import pages.users.UsersReadUserWithCarsPage;
 import pages.cars.CarsCreateNew;
 import pages.cars.CarsReadAll;
+import pages.main.MainPage;
+import pages.users.UsersAddMoneyPage;
+import pages.users.UsersReadAllPage;
 import utils.ConfigReader;
 
 import java.sql.SQLException;
