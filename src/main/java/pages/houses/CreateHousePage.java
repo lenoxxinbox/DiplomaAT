@@ -1,9 +1,8 @@
-package pages;
+package pages.houses;
 
 import com.codeborne.selenide.SelenideElement;
-
+import io.qameta.allure.Step;
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -25,12 +24,14 @@ public class CreateHousePage {
 
     public static String id;
 
+    @Step("Проверяем открытие страницы создания дома")
     public CreateHousePage goCreateHouse() {
         HOUSES_MENU.click();
         HOUSES_MENU_CREATE_NEW.click();
         return this;
     }
-
+    
+    @Step("Проверяем статус создания дома")
     public String getCreateStatus() {
         return CREATE_STATUS.getText();
     }
@@ -43,6 +44,7 @@ public class CreateHousePage {
         return NEW_ID_HOUSE.getText();
     }
 
+    @Step("Проверяем процесс создания дома")
     public CreateHousePage createHouse(String floors, String price, String places1,
                                        String places2, String places3, String places4) {
         FLOORS_HOUSE.sendKeys(floors);

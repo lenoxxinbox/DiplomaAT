@@ -2,9 +2,9 @@ package pages.houses;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -20,28 +20,33 @@ public class SettleEvictHousesPage {
     private final SelenideElement RESULT_STATUS = $(xpath("//button[@class='status btn btn-secondary']"));
     private static final SelenideElement STATUS_FOLD = $(xpath("//*[@id=\"root\"]/div/section/div/div/button[2]"));
 
+    @Step("Заполнение поля userID")
     public SettleEvictHousesPage userIDInput(String id) {
         userID.click();
         userID.sendKeys(id);
         return this;
     }
 
+    @Step("Заполнение поля houseID")
     public SettleEvictHousesPage houseIDInput(String id) {
         houseID.click();
         houseID.sendKeys(id);
         return this;
     }
 
+    @Step("Выбор заселение в дом")
     public SettleEvictHousesPage settle() {
         SETTLE_RADIOBUTTON.click();
         return this;
     }
 
+    @Step("Выбор выселение из дома")
     public SettleEvictHousesPage evict() {
         EVICT_RADIOBUTTON.click();
         return this;
     }
 
+    @Step("Нажатие кнопки PUSH")
     public SettleEvictHousesPage push() {
         CLICK_PUSH.shouldBe(visible);
         CLICK_PUSH.click();
@@ -49,10 +54,12 @@ public class SettleEvictHousesPage {
         return this;
     }
 
+    @Step("Получение статуса")
     public String getResultMessage() {
         return RESULT_STATUS.shouldBe(Condition.visible).getText();
     }
 
+    @Step("Ожидание статуса")
     public void waitForStatusChange() {
         STATUS_FOLD.shouldNotHave(text("Status: not pushed"), Duration.ofSeconds(10));
     }

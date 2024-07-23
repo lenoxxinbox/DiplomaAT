@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pages.CreateHousePage.id;
+import static pages.houses.CreateHousePage.id;
 
 public class FindHouseTest extends BaseTest {
     public static final String SUCCESS_FIND = "Status: 200 ok";

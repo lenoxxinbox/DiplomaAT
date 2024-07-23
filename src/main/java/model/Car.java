@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Car {
+    @SerializedName("id")
+    private String id;
     @SerializedName("engineType")
     private String engineType;
     @SerializedName("mark")
@@ -15,14 +17,16 @@ public class Car {
     @SerializedName("model")
     private String model;
     @SerializedName("price")
-    private Double price;
+    private String price;
 
-    public Car(String engineType, String mark, String model, Double price) {
+    public Car(String engineType, String mark, String model, String price) {
         this.engineType = engineType;
         this.mark = mark;
         this.model = model;
         this.price = price;
     }
+
+    public Car() {}
 
     @Override
     public String toString() {

@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
 import static io.restassured.RestAssured.given;
 
 @Feature("Проверка покупки/продажи авто с помощью API-запросов")
@@ -24,7 +23,7 @@ public class APIBuySellCarTest {
 
     @Test
     @DisplayName("Проверка успешной покупки авто с помощью API-запроса")
-    @Order(1)
+    @Order(2)
     @Owner("Elena Dmitrienko")
     public void userBuyCar() {
         String token = toAuthorize();
@@ -32,14 +31,14 @@ public class APIBuySellCarTest {
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .post("http://77.50.236.203:4879/user/1/buyCar/6")
+                .post("http://77.50.236.203:4879/user/95/buyCar/22")
                 .then()
                 .assertThat().statusCode(200);
     }
 
     @Test
     @DisplayName("Проверка успешной продажи авто с помощью API-запроса")
-    @Order(2)
+    @Order(1)
     @Owner("Elena Dmitrienko")
     public void userSellCar() {
         String token = toAuthorize();
@@ -47,7 +46,7 @@ public class APIBuySellCarTest {
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .post("http://77.50.236.203:4879/user/1/sellCar/6")
+                .post("http://77.50.236.203:4879/user/95/sellCar/22")
                 .then()
                 .assertThat().statusCode(200);
     }
