@@ -3,7 +3,6 @@ package db;
 import model.Car;
 import model.User;
 import model.House;
-
 import java.sql.*;
 
 public class DBConnection {
@@ -27,6 +26,11 @@ public class DBConnection {
         return statement.executeQuery();
     }
 
+    public int executeUpdate(String query) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        return statement.executeUpdate();
+    }
+
     public User getUserById(String id) throws SQLException {
         String query = "SELECT * FROM person WHERE id = " + id;
         ResultSet result = executeQuery(query);
@@ -44,6 +48,17 @@ public class DBConnection {
             isMale = result.getBoolean("sex");
         }
         return new User(firstName, secondName, age, money, isMale);
+    }
+    public double getUserMoneyById(String id) throws SQLException {
+        String query = "SELECT money FROM person WHERE id = " + id;
+        ResultSet result = executeQuery(query);
+        double money = 0.0;
+
+        if (result.next()) {
+            money = result.getDouble("money");
+        }
+
+        return money;
     }
 
         public House getHouseById(String id) throws SQLException {
@@ -69,14 +84,29 @@ public class DBConnection {
         Double price = null;
 
         while (result.next()) {
-            engine_type_id = result.getString("engine_type_id");
-            if ("2".equals(engine_type_id)){
-                engine_type_id = "Diesel";
-            }
+            String engineTypeId = result.getString("engine_type_id");
+            engine_type_id = getEngineTypeName(engineTypeId);
             mark = result.getString("mark");
             model = result.getString("model");
             price = result.getDouble("price");
         }
         return new Car(engine_type_id, mark, model, price);
+    }
+
+    public String getEngineTypeName(String engineType){
+        return switch (engineType) {
+            case "1" -> "Gasoline";
+            case "2" -> "Diesel";
+            case "3" -> "CNG";
+            case "4" -> "Hydrogenic";
+            case "5" -> "Electric";
+            case "6" -> "PHEV";
+            default -> "Unknown";
+        };
+    }
+
+    public void deleteCarById(String id) throws SQLException {
+        String query = "DELETE FROM car WHERE id = " + id;
+        ResultSet result = executeQuery(query);
     }
 }

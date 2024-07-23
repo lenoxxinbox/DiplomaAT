@@ -1,11 +1,13 @@
 package api;
 
 import base.BaseApiTest;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import model.Car;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Feature("Проверка создания авто с помощью API запросов")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsApiTest extends BaseApiTest {
     private static String carId;

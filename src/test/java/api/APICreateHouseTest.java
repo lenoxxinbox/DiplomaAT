@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import pojo.HouseExample;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 import static io.restassured.RestAssured.given;
 
 public class APICreateHouseTest {

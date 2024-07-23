@@ -2,7 +2,6 @@ package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.id;
@@ -15,7 +14,6 @@ public class UsersReadUserWithCarsPage {
     private final SelenideElement STATUS_INFO = $(xpath("//button[@class='status btn btn-secondary']"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement READ_USER_WITH_CARS_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
-
 
     public UsersReadUserWithCarsPage goToReadUserWithCarsMenu () {
         USERS_MENU.click();
@@ -30,7 +28,6 @@ public class UsersReadUserWithCarsPage {
         TABLE.shouldBe(visible);
         return this;
     }
-
 
     public String statusInfo () {
         STATUS_INFO.getText();

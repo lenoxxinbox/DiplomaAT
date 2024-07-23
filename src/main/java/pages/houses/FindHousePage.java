@@ -1,9 +1,7 @@
-package pages;
+package pages.houses;
 
 import com.codeborne.selenide.SelenideElement;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -15,7 +13,6 @@ public class FindHousePage {
     private final static SelenideElement ID_FIND = $x("//input[@id='house_input']");
     private final static SelenideElement TABLE_FIND = $x("//table[@class='tableHouse table table-striped table-bordered table-hover']");
     private final static SelenideElement FIND_BUTTON = $x("//button[contains(text(), 'Read')]");
-
 
     public FindHousePage goFindHouse() {
         HOUSES_MENU.click();

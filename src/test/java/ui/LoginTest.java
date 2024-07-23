@@ -89,7 +89,6 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
                 () -> assertEquals(INVALID_EMAIL_ERROR_MESSAGE, emailErrorMessage, "Сообщение рядом с полем email должно быть корректным")
         );
-
     }
 
     @Test
@@ -105,7 +104,6 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
                 () -> assertEquals(INVALID_PASSWORD_ERROR_MESSAGE, passwordErrorMessage, "Сообщение рядом с полем password должно быть корректным")
         );
-
     }
 
     @Test
@@ -123,6 +121,5 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals("", emailInputValue, "Поле email должно быть пустым"),
                 () -> assertEquals("", passwordInputValue, "Поле password должно быть пустым")
         );
-
     }
 }

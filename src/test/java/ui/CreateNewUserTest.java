@@ -28,7 +28,6 @@ public class CreateNewUserTest extends BaseTest {
     public void login() {
         loginPage.isPageOpen().fullAuthorization();
         menu.openCreateNewUserPage();
-
     }
 
     @Test
@@ -125,14 +124,14 @@ public class CreateNewUserTest extends BaseTest {
         // удаление пользователя через API
         apiConnection.authorize(USERNAME, PASSWORD);
         int code = apiConnection.deleteUser(Integer.parseInt(id)).getStatusCode();
-        
+
         assertAll(() -> assertTrue(isStatusMessageCorrect, "status message should be correct"),
                 () -> assertEquals(FIRST_NAME_TEXT, finalUserFromDB.getFirstName(), "Значения поля first_name при создании и в БД должны совпадать"),
                 () -> assertEquals(SECOND_NAME_TEXT, finalUserFromDB.getSecondName(), "Значения поля second_name при создании и в БД должны совпадать"),
                 () -> assertEquals(AGE_NUM, finalUserFromDB.getAge(), "Значения поля age при создании и в БД должны совпадать"),
                 () -> assertEquals(MONEY_NUM, finalUserFromDB.getMoney(), "Значения поля money при создании и в БД должны совпадать"),
                 () -> assertEquals(IS_MALE, finalUserFromDB.isMale(), "Значения поля sex при создании и в БД должны совпадать"),
-                () -> assertEquals(code, 1)
+                () -> assertEquals(code, 204, "Созданный пользователь должен быть удален")
 
         );
     }
