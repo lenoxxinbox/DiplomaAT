@@ -2,8 +2,10 @@ package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$;
-import static java.lang.Thread.sleep;
+import static com.codeborne.selenide.Condition.text;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
@@ -14,6 +16,8 @@ public class UsersAddMoneyPage {
     private final SelenideElement STATUS_INFO = $(xpath("//button[@class='status btn btn-secondary']"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement ADD_MONEY_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
+
+    String BASIC_STATUS = "Status: not pushed";
 
     public UsersAddMoneyPage goToAddMoneyMenu() {
         USERS_MENU.click();
@@ -34,13 +38,8 @@ public class UsersAddMoneyPage {
         return STATUS_INFO.getText();
     }
 
-    public UsersAddMoneyPage waitForStatusChange() {
-        try {
-            sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return this;
+    public void waitForStatusChange() {
+        STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
     }
 
 }
