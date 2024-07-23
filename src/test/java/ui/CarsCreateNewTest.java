@@ -37,7 +37,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCar() throws SQLException {
         String receivedStatus = carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "FiatUs", "Albea", "200")
+                .createNewCar("Diesel", "FiatUs", "Albea", "200.0")
                 .getStatusText();
         String newId = carsCreateNew.getNewId();
 
@@ -56,7 +56,7 @@ public class CarsCreateNewTest extends BaseTest {
                 () -> assertEquals("Diesel", createdCar.getEngineType(), "Тип двигателя не соответствует ожидаемому"),
                 () -> assertEquals("FiatUs", createdCar.getMark(), "Марка не соответствует ожидаемой"),
                 () -> assertEquals("Albea", createdCar.getModel(), "Модель не соответствует ожидаемой"),
-                () -> assertEquals(5000.0, createdCar.getPrice(), "Цена не соответствует ожидаемой")
+                () -> assertEquals("200.0", createdCar.getPrice(), "Цена не соответствует ожидаемой")
         );
     }
 
