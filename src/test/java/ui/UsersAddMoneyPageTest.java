@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersAddMoneyPageTest extends BaseTest{
+public class UsersAddMoneyPageTest extends BaseTest {
 
     String expectedMessageSuccess = "Status: Successfully pushed, code: 200";
     String expectedMessageError = "Status: AxiosError: Request failed with status code 404";
@@ -52,4 +52,3 @@ public class UsersAddMoneyPageTest extends BaseTest{
         assertEquals(actualMessage, expectedMessageIncorrectData);
     }
 }
-

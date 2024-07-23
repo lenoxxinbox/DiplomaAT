@@ -22,7 +22,6 @@ public class FindHousePage {
         HOUSES_MENU_FIND_HOUSE.click();
         return this;
     }
-
     public String getFindStatus() {
         return FIND_STATUS.getText();
     }

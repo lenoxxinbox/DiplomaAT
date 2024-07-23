@@ -4,10 +4,8 @@ import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersReadUserWithCarsPageTest extends BaseTest{
+public class UsersReadUserWithCarsPageTest extends BaseTest {
 
     String expectedMessageOk = "Status: 200 ok";
     String expectedMessageUserNotFound = "Status: 204 user not found";

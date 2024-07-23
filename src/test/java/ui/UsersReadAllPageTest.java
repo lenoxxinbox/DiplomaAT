@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersReadAllPageTest extends BaseTest{
+public class UsersReadAllPageTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {
@@ -157,4 +157,3 @@ public class UsersReadAllPageTest extends BaseTest{
                 .isIdCorrect(defaultId), "ID первой строки должен совпадать после перезагрузки");
     }
 }
-

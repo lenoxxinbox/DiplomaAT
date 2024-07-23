@@ -1,11 +1,13 @@
 package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
+
 public class UsersReadUserWithCarsPage {
     private final SelenideElement USER_ID = $(id("user_input"));
     private final SelenideElement TABLE = $(xpath("//table[@class='tableUser table table-striped table-bordered table-hover']"));
@@ -35,4 +37,3 @@ public class UsersReadUserWithCarsPage {
         return STATUS_INFO.getText();
     }
 }
-

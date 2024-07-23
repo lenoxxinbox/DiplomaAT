@@ -28,7 +28,6 @@ public class UsersReadAllPage {
     private final SelenideElement READ_ALL_USERS_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
     private final SelenideElement TABLE_BODY = $(xpath("//table/tbody"));
 
-
     public UsersReadAllPage goToReadAllUsersMenu() {
         USERS_MENU.click();
         READ_ALL_USERS_MENU.click();
@@ -206,6 +205,3 @@ public class UsersReadAllPage {
 
     }
 }
-
-
-
