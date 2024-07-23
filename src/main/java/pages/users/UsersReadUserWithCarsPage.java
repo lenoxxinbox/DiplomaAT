@@ -1,14 +1,13 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-
-import java.time.Duration;
-
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
+
 public class UsersReadUserWithCarsPage {
     private final SelenideElement USER_ID = $(id("user_input"));
     private final SelenideElement TABLE = $(xpath("//table[@class='tableUser table table-striped table-bordered table-hover']"));
@@ -25,9 +24,10 @@ public class UsersReadUserWithCarsPage {
     }
 
     public UsersReadUserWithCarsPage findUserWithCars (String id) {
+        TABLE.shouldBe(visible);
         USER_ID.sendKeys(id);
         READ_BUTTON.click();
-        $(TABLE).shouldBe(visible, Duration.ofSeconds(10));
+        TABLE.shouldBe(visible);
         return this;
     }
 
@@ -36,6 +36,4 @@ public class UsersReadUserWithCarsPage {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
     }
-
-
 }
