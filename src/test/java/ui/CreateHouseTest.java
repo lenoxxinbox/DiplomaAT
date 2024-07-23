@@ -1,15 +1,11 @@
 package ui;
 
 import base.BaseTest;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Owner;
 import model.House;
-import model.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.MainPage;
 
 import java.sql.SQLException;
 
