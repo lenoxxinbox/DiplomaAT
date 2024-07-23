@@ -81,14 +81,14 @@ public class DBConnection {
         String  engine_type_id = null;
         String mark = null;
         String model = null;
-        Double price = null;
+        String price = null;
 
         while (result.next()) {
             String engineTypeId = result.getString("engine_type_id");
             engine_type_id = getEngineTypeName(engineTypeId);
             mark = result.getString("mark");
             model = result.getString("model");
-            price = result.getDouble("price");
+            price = Double.toString(result.getDouble("price"));
         }
         return new Car(engine_type_id, mark, model, price);
     }

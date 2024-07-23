@@ -31,7 +31,7 @@ public class CarsCreateNew {
     }
 
     @Step("Создание автомобиля")
-    public CarsCreateNew createNewCar(String engineType, String mark, String model, Double price) {
+    public CarsCreateNew createNewCar(String engineType, String mark, String model, String price) {
         enterEngineType(engineType);
         enterMark(mark);
         enterModel(model);
@@ -60,7 +60,7 @@ public class CarsCreateNew {
     }
 
     @Step("Ввод цены")
-    public CarsCreateNew enterPrice(Double price) {
+    public CarsCreateNew enterPrice(String price) {
         if (price != null) {
             PRICE_FOLD.sendKeys(price.toString());
         }

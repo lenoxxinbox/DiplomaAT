@@ -24,13 +24,13 @@ public class BaseApiTest {
     @BeforeEach
     public void inizialization(){
         carRequest = new CarRequest();
-        authRequest = new AuthorizationRequest(
-                ConfigReader.get("password"),
-                ConfigReader.get("username"));
     }
 
     @BeforeAll
     protected static void setUp() {
+        authRequest = new AuthorizationRequest(
+                ConfigReader.get("password"),
+                ConfigReader.get("username"));
         RestAssured.baseURI = ConfigReader.get("baseApiURL");
         String authJson = authRequest.toJson();
         Response response = given()
