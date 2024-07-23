@@ -1,6 +1,7 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import utils.ConfigReader;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Проверка авторизации")
 public class LoginTest extends BaseTest {
 
     private final static String USERNAME = ConfigReader.get("username");

@@ -1,6 +1,7 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Feature("Проверка создания пользователя")
 public class CreateNewUserTest extends BaseTest {
     public static final String INVALID_REQUEST_STATUS = "Status: Invalid request data";
     public static final String SUCCESSFUL_REQUEST_STATUS = "Status: Successfully pushed, code: 201";
