@@ -1,6 +1,7 @@
 package base;
 
 import api_service.ApiConnection;
+import api_service.CarRequest;
 import com.codeborne.selenide.Configuration;
 import db.DBConnection;
 import org.junit.jupiter.api.AfterEach;

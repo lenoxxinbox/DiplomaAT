@@ -4,6 +4,7 @@ import base.BaseTest;
 import io.qameta.allure.Feature;
 import model.Car;
 import org.junit.jupiter.api.*;
+import utils.ConfigReader;
 
 import java.sql.SQLException;
 

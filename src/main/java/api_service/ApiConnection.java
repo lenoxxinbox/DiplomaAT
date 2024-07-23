@@ -2,8 +2,10 @@ package api_service;
 
 import io.restassured.response.Response;
 import model.User;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiConnection {
