@@ -1,7 +1,7 @@
 package pages.main;
 
 import com.codeborne.selenide.SelenideElement;
-import pages.SettleEvictHousesPage;
+import pages.houses.SettleEvictHousesPage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -28,7 +28,7 @@ public class MainPage {
     private final SelenideElement BUY_SELL_CAR_MENU = $(xpath("//a[text()='Buy or sell car']"));
     private final SelenideElement SETTLE_EVICT_HOUSES_MENU = $(xpath("//a[text()='Settle to house']"));
 
-    public void openCarsReadAll(){
+    public void openCarsReadAll() {
         CARS_DROPDOWN.click();
         CARS_READ_ALL.click();
     }
@@ -39,7 +39,7 @@ public class MainPage {
         CREATE_NEW_USER_LINK.click();
     }
 
-    public static void goCreateHousePage() {
+    public void goCreateHousePage() {
         HOUSES_MENU.click();
         HOUSES_MENU_CREATE_NEW.click();
     }
