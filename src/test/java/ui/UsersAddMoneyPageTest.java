@@ -3,6 +3,7 @@ package ui;
 import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
+import io.qameta.allure.Feature;
 
 import java.sql.SQLException;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import utils.ConfigReader;
-
+@Feature("Проверка добавления денег пользователю")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersAddMoneyPageTest extends BaseTest {
     private final static String USERNAME = ConfigReader.get("username");

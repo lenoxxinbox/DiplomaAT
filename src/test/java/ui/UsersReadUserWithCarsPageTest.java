@@ -1,10 +1,11 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-
+@Feature("Проверка поиска пользователей с машинами")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersReadUserWithCarsPageTest extends BaseTest {
 
@@ -35,7 +36,7 @@ public class UsersReadUserWithCarsPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Поиск несуществующего пользователя")
     public void findUserWithCarsNotExist() {
-        usersReadUserWithCarsPage.findUserWithCars("909090909090");
+        usersReadUserWithCarsPage.findUserWithCars("9999999999999");
         String actualMessage = usersReadUserWithCarsPage.statusInfo();
         assertEquals(actualMessage, expectedMessageUserNotFound);
     }

@@ -3,9 +3,10 @@ package ui;
 import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
+import io.qameta.allure.Feature;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+@Feature("Проверка сортировки таблицы со всеми пользователями")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersReadAllPageTest extends BaseTest {
 
