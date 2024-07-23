@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.text;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
+import io.qameta.allure.Step;
 
 public class UsersAddMoneyPage {
     private final SelenideElement USER_ID = $(id("id_send"));
@@ -25,6 +26,7 @@ public class UsersAddMoneyPage {
         return this;
     }
 
+    @Step("Заполнение поля userID и money")
     public UsersAddMoneyPage addMoneyToUser(String id, String money) {
         USER_ID.sendKeys(id);
         SEND_MONEY.sendKeys(money);
@@ -32,12 +34,12 @@ public class UsersAddMoneyPage {
         waitForStatusChange();
         return this;
     }
-
+    @Step("Получение статуса")
     public String statusInfo() {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
     }
-
+    @Step("Ождиание статуса статуса")
     public void waitForStatusChange() {
         STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
     }

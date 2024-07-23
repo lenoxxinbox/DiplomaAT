@@ -1,7 +1,7 @@
 package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
-import java.time.Duration;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +22,7 @@ public class UsersReadUserWithCarsPage {
         READ_USER_WITH_CARS_MENU.click();
         return this;
     }
-
+    @Step("Заполнение поля userID")
     public UsersReadUserWithCarsPage findUserWithCars (String id) {
         TABLE.shouldBe(visible);
         USER_ID.sendKeys(id);
@@ -31,7 +31,7 @@ public class UsersReadUserWithCarsPage {
         return this;
     }
 
-
+    @Step("Получение статуса")
     public String statusInfo () {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
