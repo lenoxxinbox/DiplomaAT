@@ -2,16 +2,22 @@ package base;
 
 import api_services.ApiConnection;
 import com.codeborne.selenide.Configuration;
-import dbconnection.DBConnection;
+import db.DBConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import pages.cars.BuySellCarPage;
+import pages.CreateHousePage;
+import pages.CreateNewUserPage;
+import pages.FindHousePage;
 import pages.LoginPage;
-import pages.MainPage;
-import pages.houses.HousesReadAll;
-import pages.*;
-import pages.Cars.CarsCreateNew;
-import pages.Cars.CarsReadAll;
+import pages.houses.SettleEvictHousesPage;
+import pages.users.UsersReadUserWithCarsPage;
+import pages.cars.CarsCreateNew;
+import pages.cars.CarsReadAll;
+import pages.main.MainPage;
+import pages.users.UsersAddMoneyPage;
+import pages.users.UsersReadAllPage;
 import utils.ConfigReader;
 
 import java.sql.SQLException;
@@ -32,7 +38,6 @@ public class BaseTest {
     protected static UsersReadUserWithCarsPage usersReadUserWithCarsPage;
     protected static CarsReadAll carsReadAll;
     protected static CarsCreateNew carsCreateNew;
-    protected static HousesReadAll housesReadAll;
     protected static CreateNewUserPage createNewUserPage;
     protected static BuySellCarPage buySellCarPage;
     protected static SettleEvictHousesPage settleEvictHousesPage;
@@ -60,7 +65,6 @@ public class BaseTest {
         usersReadUserWithCarsPage = new UsersReadUserWithCarsPage();
         carsReadAll = new CarsReadAll();
         carsCreateNew = new CarsCreateNew();
-        housesReadAll = new HousesReadAll();
         buySellCarPage = new BuySellCarPage();
         settleEvictHousesPage = new SettleEvictHousesPage();
         createNewUserPage = new CreateNewUserPage();

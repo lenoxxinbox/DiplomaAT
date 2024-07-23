@@ -1,9 +1,11 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$;
-import static java.lang.Thread.sleep;
+import static com.codeborne.selenide.Condition.text;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
@@ -15,6 +17,8 @@ public class UsersAddMoneyPage {
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement ADD_MONEY_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
 
+    String BASIC_STATUS = "Status: not pushed";
+
     public UsersAddMoneyPage goToAddMoneyMenu() {
         USERS_MENU.click();
         ADD_MONEY_MENU.click();
@@ -24,24 +28,18 @@ public class UsersAddMoneyPage {
     public UsersAddMoneyPage addMoneyToUser(String id, String money) {
         USER_ID.sendKeys(id);
         SEND_MONEY.sendKeys(money);
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         PUSH_BUTTON.click();
-
-        try {
-            sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForStatusChange();
         return this;
     }
 
     public String statusInfo() {
         STATUS_INFO.getText();
         return STATUS_INFO.getText();
+    }
+
+    public void waitForStatusChange() {
+        STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
     }
 
 }

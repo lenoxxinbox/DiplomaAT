@@ -4,13 +4,22 @@ import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersAddMoneyPageTest extends BaseTest {
 
+    String expectedMessageSuccess = "Status: Successfully pushed, code: 200";
+    String expectedMessageError = "Status: AxiosError: Request failed with status code 404";
+    String expectedMessageIncorrectData = "Status: Incorrect input data";
+
     @BeforeEach
     public void setUp() {
-        loginPage.isPageOpen().fullAuthorization();
-        menu.openUsersAddMoney();
+        loginPage
+                .isPageOpen()
+                .fullAuthorization();
+        menu
+                .openUsersAddMoney();
     }
 
     @Test
@@ -18,10 +27,9 @@ public class UsersAddMoneyPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Добавить денег существующему пользователю")
     public void findUserWithCarsExist() {
-        String expectedMessage = "Status: Successfully pushed, code: 200";
         usersAddMoneyPage.addMoneyToUser("3", "200");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        Assertions.assertEquals(actualMessage, expectedMessage);
+        assertEquals(actualMessage, expectedMessageSuccess);
     }
 
     @Test
@@ -29,10 +37,9 @@ public class UsersAddMoneyPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Добавить денег несуществующему пользователю")
     public void findUserWithCarsNotExist() {
-        String expectedMessage = "Status: AxiosError: Request failed with status code 404";
-        usersAddMoneyPage.addMoneyToUser("909090909090", "200");
+        usersAddMoneyPage.addMoneyToUser("909090909090","200");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        Assertions.assertEquals(actualMessage, expectedMessage);
+        assertEquals(actualMessage, expectedMessageError);
     }
 
     @Test
@@ -40,9 +47,8 @@ public class UsersAddMoneyPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Ввод невалидных данных в поля User ID и Money")
     public void findUserWithCarsNotValid() {
-        String expectedMessage = "Status: Incorrect input data";
-        usersAddMoneyPage.addMoneyToUser("-1", "0");
+        usersAddMoneyPage.addMoneyToUser("-1","0");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        Assertions.assertEquals(actualMessage, expectedMessage);
+        assertEquals(actualMessage, expectedMessageIncorrectData);
     }
 }
