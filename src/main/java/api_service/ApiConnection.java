@@ -1,4 +1,4 @@
-package api_services;
+package api_service;
 
 import io.restassured.response.Response;
 import model.User;
@@ -33,7 +33,6 @@ public class ApiConnection {
                 .response();
 
         token = response.jsonPath().getString("access_token");
-
     }
 
 
@@ -98,5 +97,4 @@ public class ApiConnection {
     public Response deleteUser(int id) {
         return this.delete(url + "user/" + id);
     }
-
 }

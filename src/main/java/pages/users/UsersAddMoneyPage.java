@@ -1,6 +1,8 @@
 package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
+import pages.cars.CarsCreateNew;
 
 import java.time.Duration;
 
@@ -16,6 +18,7 @@ public class UsersAddMoneyPage {
     private final SelenideElement STATUS_INFO = $(xpath("//button[@class='status btn btn-secondary']"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement ADD_MONEY_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
+    private static final String BASIC_STATUS = "Status: not pushed";
 
     String BASIC_STATUS = "Status: not pushed";
 
@@ -38,8 +41,13 @@ public class UsersAddMoneyPage {
         return STATUS_INFO.getText();
     }
 
+    @Step("Ожидание изменения поля статус")
+    public UsersAddMoneyPage waitForStatusChange() {
+        STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
+        return this;
+    }
+  
     public void waitForStatusChange() {
         STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
     }
-
 }

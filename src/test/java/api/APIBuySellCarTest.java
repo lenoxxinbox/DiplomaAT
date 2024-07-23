@@ -7,7 +7,6 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-
 import static io.restassured.RestAssured.given;
 
 @Feature("Проверка покупки/продажи авто с помощью API-запросов")

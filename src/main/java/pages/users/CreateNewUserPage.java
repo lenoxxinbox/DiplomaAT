@@ -5,9 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -106,7 +104,5 @@ public class CreateNewUserPage {
         NEW_USER_BUTTON.shouldBe(visible);
         String text = NEW_USER_BUTTON.getText();
         return text.replaceAll("^.*?(\\d+)$", "$1");
-
     }
-
 }

@@ -3,9 +3,7 @@ package pages.cars;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +20,7 @@ public class CarsCreateNew {
     private static final SelenideElement NEW_ID_FOLD = $x("//*[@id=\"root\"]/div/section/div/div/button[3]");
     private static final String BASIC_STATUS = "Status: not pushed";
 
-    @Step("Проверяем открытие страницы")
+    @Step("Проверка открытия страницы")
     public CarsCreateNew isOpenPage() {
         try {
             PUSH_TO_API_BUTTON.shouldBe(Condition.visible);
@@ -78,7 +76,7 @@ public class CarsCreateNew {
         return this;
     }
 
-    @Step("Получаем текст в поле статуса")
+    @Step("Получение текств в поле статуса")
     public String getStatusText() {
         String status = STATUS_FOLD
                 .shouldBe(visible)
@@ -96,6 +94,7 @@ public class CarsCreateNew {
 
     }
 
+    @Step("Ожидание изменения поля статус")
     public CarsCreateNew waitForStatusChange() {
         STATUS_FOLD.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
         return this;

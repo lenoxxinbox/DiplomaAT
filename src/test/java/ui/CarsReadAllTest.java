@@ -1,11 +1,13 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Feature("Проверка сортировки таблицы со всеми автомобилями")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsReadAllTest extends BaseTest {
 

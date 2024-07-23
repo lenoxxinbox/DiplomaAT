@@ -28,7 +28,6 @@ public class CreateNewUserTest extends BaseTest {
     public void login() {
         loginPage.isPageOpen().fullAuthorization();
         menu.openCreateNewUserPage();
-
     }
 
     @Test

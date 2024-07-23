@@ -1,13 +1,16 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import model.Car;
 import org.junit.jupiter.api.*;
+import utils.ConfigReader;
 
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Feature("Проверка создания нового автомобиля на UI")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsCreateNewTest extends BaseTest {
     private final String STATUS_SUCCESSFUL = "Status: Successfully pushed, code: 201";
@@ -47,6 +50,7 @@ public class CarsCreateNewTest extends BaseTest {
                 () -> assertEquals(STATUS_SUCCESSFUL, receivedStatus, "Статус не соответствует ожидаемому"),
                 () -> assertEquals(firstID, newId, "Id нового автомобиля не получен")
         );
+
         Car createdCar = dbConnection.getCarById(newId);
         assertAll(
                 () -> assertEquals("Diesel", createdCar.getEngineType(), "Тип двигателя не соответствует ожидаемому"),
