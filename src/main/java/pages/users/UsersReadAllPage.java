@@ -2,6 +2,8 @@ package pages.users;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,92 +32,92 @@ public class UsersReadAllPage {
         READ_ALL_USERS_MENU.click();
         return this;
     }
-
+    @Step("Нажатие кнопки reload")
     public UsersReadAllPage reload() {
         TABLE_BODY.shouldBe(visible);
         RELOAD_BUTTON.shouldBe(visible);
         RELOAD_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по Id")
     public UsersReadAllPage sortById() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_ID_BUTTON.shouldBe(visible);
         SORT_BY_ID_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по FirstName")
     public UsersReadAllPage sortByFirstName() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_FIRST_NAME_BUTTON.shouldBe(visible);
         SORT_BY_FIRST_NAME_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по LastName")
     public UsersReadAllPage sortByLastName() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_LAST_NAME_BUTTON.shouldBe(visible);
         SORT_BY_LAST_NAME_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по Age")
     public UsersReadAllPage sortByAge() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_AGE_BUTTON.shouldBe(visible);
         SORT_BY_AGE_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по Sex")
     public UsersReadAllPage sortBySex() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_SEX_BUTTON.shouldBe(visible);
         SORT_BY_SEX_BUTTON.click();
         return this;
     }
-
+    @Step("Нажатие кнопки сортировки по Money")
     public UsersReadAllPage sortByMoney() {
         TABLE_BODY.shouldBe(visible);
         SORT_BY_MONEY_BUTTON.shouldBe(visible);
         SORT_BY_MONEY_BUTTON.click();
         return this;
     }
-
+    @Step("Получение List по полю ID")
     public UsersReadAllPage getListForId(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[1]").shouldHave(sizeGreaterThan(0));
         collectList(true, ascending, list);
         return this;
     }
-
+    @Step("Получение List по полю FirstName")
     public UsersReadAllPage getListForFirstName(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[2]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
-
+    @Step("Получение List по полю LastName")
     public UsersReadAllPage getListForLastName(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
-
+    @Step("Получение List по полю Age")
     public UsersReadAllPage getListForAge(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[4]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
-
+    @Step("Получение List по полю Sex")
     public UsersReadAllPage getListForSex(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[5]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
-
+    @Step("Получение List по полю Money")
     public UsersReadAllPage getListForMoney(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[6]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
-
+    @Step("Создание и сортировка коллекции по полученному List")
     private void collectList(boolean isNumeric, boolean ascending, ElementsCollection list) {
         List<String> sortedList = new ArrayList<>();
         for (SelenideElement element : list) {
@@ -139,7 +141,7 @@ public class UsersReadAllPage {
             checkSortingOrder(sortedList, ascending);
         }
     }
-
+    @Step("Сортировка списка")
     private <T extends Comparable<? super T>> void checkSortingOrder(List<T> valueList, boolean ascending) {
         if (valueList.isEmpty()) {
             System.err.println("Не найдено допустимых данных для сортировки.");
@@ -181,19 +183,19 @@ public class UsersReadAllPage {
         return true;
     }
 
-
+    @Step("Ожидание стрелки после нажатия на кнопку сортировки")
     public UsersReadAllPage sortButtonVisible(String buttonText) {
         $$(By.xpath("//button[text() = '" + buttonText + "']"))
                 .filter(visible)
                 .shouldHave(sizeGreaterThan(0));
         return this;
     }
-
+    @Step("Получение первого ID в таблице")
     public String getDefaultId() {
         String DefaultId = $(By.xpath("//tbody/tr[1]/td[1]")).getText();
         return DefaultId;
     }
-
+    @Step("Проверка равенства идентификатора в первой строке таблицы с ожидаемым значением")
     public boolean isIdCorrect(String expectedId) {
         TABLE_BODY.shouldBe(visible);
         SelenideElement firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]"));
