@@ -22,9 +22,10 @@ public class UsersReadUserWithCarsPage {
     }
 
     public UsersReadUserWithCarsPage findUserWithCars (String id) {
+        TABLE.shouldBe(visible);
         USER_ID.sendKeys(id);
         READ_BUTTON.click();
-        $(TABLE).shouldBe(visible, Duration.ofSeconds(10));
+        TABLE.shouldBe(visible);
         return this;
     }
 

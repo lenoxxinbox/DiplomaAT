@@ -4,13 +4,21 @@ import base.BaseTest;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersReadUserWithCarsPageTest extends BaseTest {
 
+    String expectedMessageOk = "Status: 200 ok";
+    String expectedMessageUserNotFound = "Status: 204 user not found";
+
     @BeforeEach
     public void setUp() {
-        loginPage.isPageOpen().fullAuthorization();
-        menu.openUsersReadUserWithCars();
+        loginPage
+                .isPageOpen()
+                .fullAuthorization();
+        menu
+                .openUsersReadUserWithCars();
     }
 
     @Test
@@ -18,10 +26,9 @@ public class UsersReadUserWithCarsPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Поиск существующего пользователя")
     public void findUserWithCarsExist() {
-        String expectedMessage = "Status: 200 ok";
         usersReadUserWithCarsPage.findUserWithCars("3");
         String actualMessage = usersReadUserWithCarsPage.statusInfo();
-        Assertions.assertEquals(actualMessage, expectedMessage);
+        assertEquals(actualMessage, expectedMessageOk);
     }
 
     @Test
@@ -29,9 +36,8 @@ public class UsersReadUserWithCarsPageTest extends BaseTest {
     @Owner("Lapidus Vyacheslav")
     @DisplayName("Поиск несуществующего пользователя")
     public void findUserWithCarsNotExist() {
-        String expectedMessage = "Status: 204 user not found";
         usersReadUserWithCarsPage.findUserWithCars("909090909090");
         String actualMessage = usersReadUserWithCarsPage.statusInfo();
-        Assertions.assertEquals(actualMessage, expectedMessage);
+        assertEquals(actualMessage, expectedMessageUserNotFound);
     }
 }

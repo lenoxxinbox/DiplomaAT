@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import static java.lang.Thread.sleep;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -23,6 +23,7 @@ public class UsersReadAllPage {
     private final SelenideElement SORT_BY_MONEY_BUTTON = $(xpath("//button[@class='btn btn-secondary'][7]"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement READ_ALL_USERS_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
+    private final SelenideElement TABLE_BODY = $(xpath("//table/tbody"));
 
     public UsersReadAllPage goToReadAllUsersMenu() {
         USERS_MENU.click();
@@ -31,92 +32,50 @@ public class UsersReadAllPage {
     }
 
     public UsersReadAllPage reload() {
+        TABLE_BODY.shouldBe(visible);
         RELOAD_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         RELOAD_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortById() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_ID_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_ID_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortByFirstName() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_FIRST_NAME_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_FIRST_NAME_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortByLastName() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_LAST_NAME_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_LAST_NAME_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortByAge() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_AGE_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_AGE_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortBySex() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_SEX_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_SEX_BUTTON.click();
         return this;
     }
 
     public UsersReadAllPage sortByMoney() {
+        TABLE_BODY.shouldBe(visible);
         SORT_BY_MONEY_BUTTON.shouldBe(visible);
-
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         SORT_BY_MONEY_BUTTON.click();
         return this;
     }
@@ -224,12 +183,22 @@ public class UsersReadAllPage {
 
 
     public UsersReadAllPage sortButtonVisible(String buttonText) {
-        $$(By.xpath("//button[text() = '" + buttonText + "']")).filter(visible).shouldHave(sizeGreaterThan(0));
+        $$(By.xpath("//button[text() = '" + buttonText + "']"))
+                .filter(visible)
+                .shouldHave(sizeGreaterThan(0));
         return this;
     }
 
     public String getDefaultId() {
         String DefaultId = $(By.xpath("//tbody/tr[1]/td[1]")).getText();
         return DefaultId;
+    }
+
+    public boolean isIdCorrect(String expectedId) {
+        TABLE_BODY.shouldBe(visible);
+        SelenideElement firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]"));
+        firstId.shouldHave(text(expectedId));
+        return expectedId.equals(firstId.getText());
+
     }
 }

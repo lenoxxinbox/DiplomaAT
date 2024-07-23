@@ -81,7 +81,6 @@ public class BaseTest {
         }
     }
 
-
     @AfterEach
     public void tearDownAfterClass() {
         closeWebDriver();

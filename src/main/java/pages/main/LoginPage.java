@@ -1,6 +1,7 @@
 package pages.main;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import utils.ConfigReader;
 import static com.codeborne.selenide.Condition.visible;
@@ -17,48 +18,57 @@ public class LoginPage {
     private final static String USERNAME = ConfigReader.get("username");
     private final static String PASSWORD = ConfigReader.get("password");
 
+    @Step("Авторизация")
     public void fullAuthorization() {
         this.login(USERNAME, PASSWORD);
         Alert alert = switchTo().alert();
         alert.accept();
     }
 
+    @Step("Проверка открытия страницы")
     public LoginPage isPageOpen() {
         LOGIN_BUTTON.shouldBe(visible);
         return this;
     }
 
+    @Step("Заполнение поля email")
     public LoginPage fillEmailInput(String username) {
         USERNAME_INPUT.click();
         USERNAME_INPUT.setValue(username);
         return this;
     }
 
+    @Step("Заполнение поля password")
     public LoginPage fillPasswordInput(String password) {
         PASSWORD_INPUT.click();
         PASSWORD_INPUT.setValue(password);
         return this;
     }
 
+    @Step("Нажатие на кнопку Logout")
     public LoginPage logout() {
         LOGOUT_BUTTON.click();
         return this;
     }
 
+    @Step("Получение содержимого поля email")
     public String getEmailInputValue() {
         return USERNAME_INPUT.getValue();
     }
 
+    @Step("Получение содержимого поля password")
     public String getPasswordInputValue() {
         return PASSWORD_INPUT.getValue();
     }
 
+    @Step("Выполнение логина")
     public LoginPage login(String username, String password) {
         fillEmailInput(username).fillPasswordInput(password);
         LOGIN_BUTTON.click();
         return this;
     }
 
+    @Step("Получение текста alert сообщения")
     public String getAlertMessage() {
         Alert alert = switchTo().alert();
         String alertText = alert.getText();
@@ -66,10 +76,12 @@ public class LoginPage {
         return alertText;
     }
 
+    @Step("Получение текста ошибки у поля email")
     public String getEmailErrorMessage() {
         return EMAIL_ERROR_MESSAGE.getText();
     }
 
+    @Step("Получение текста ошибки у поля password")
     public String getPasswordErrorMessage() {
         return PASSWORD_ERROR_MESSAGE.getText();
     }
