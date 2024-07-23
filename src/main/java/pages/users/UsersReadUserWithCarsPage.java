@@ -18,7 +18,6 @@ public class UsersReadUserWithCarsPage {
     private final SelenideElement STATUS_INFO = $(xpath("//button[@class='status btn btn-secondary']"));
     private final SelenideElement USERS_MENU = $(xpath("//a[text()='Users']"));
     private final SelenideElement READ_USER_WITH_CARS_MENU = $(xpath("//a[@href='#/read/users' and text()='Read all']"));
-
     private final String BASIC_STATUS = "Status: not pushed";
 
 

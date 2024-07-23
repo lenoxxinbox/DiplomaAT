@@ -16,7 +16,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.xpath;
-
 public class UsersReadAllPage {
     private final SelenideElement RELOAD_BUTTON = $(xpath("//button[text()='Reload']"));
     private final SelenideElement SORT_BY_ID_BUTTON = $(xpath("//button[@class='btn btn-secondary'][2]"));

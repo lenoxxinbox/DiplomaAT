@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+
 @Feature("Проверка поиска пользователей с машинами")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersReadUserWithCarsPageTest extends BaseTest {

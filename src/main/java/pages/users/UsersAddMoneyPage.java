@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.text;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 import io.qameta.allure.Step;
-
 public class UsersAddMoneyPage {
     private final SelenideElement USER_ID = $(id("id_send"));
     private final SelenideElement SEND_MONEY = $(id("money_send"));

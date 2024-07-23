@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import utils.ConfigReader;
+
 @Feature("Проверка добавления денег пользователю")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UsersAddMoneyPageTest extends BaseTest {
