@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 @Feature("Проверка добавления денег пользователю с помощью API-запросов")
-public class ApiUsersAddMoneyPageTest {
+public class ApiUsersAddMoneyTest {
     public String toAuthorize() {
         Response response = given()
                 .contentType(ContentType.JSON)

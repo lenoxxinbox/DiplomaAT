@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 @Feature("Проверка наличия списка всех пользователей с помощью API-запросов")
-public class ApiUsersReadAllPageTest {
+public class ApiUsersReadAllTest {
     public String toAuthorize() {
         Response response = given()
                 .contentType(ContentType.JSON)
