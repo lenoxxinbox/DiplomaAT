@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Feature("Проверка создания авто с помощью API запросов")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CarsApiTest extends BaseApiTest {
+public class ApiCarsCreateNewTest extends BaseApiTest {
     private static String carId;
 
     @Test

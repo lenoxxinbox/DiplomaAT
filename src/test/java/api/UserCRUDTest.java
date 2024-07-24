@@ -1,5 +1,6 @@
 package api;
 
+import api_service.ApiConnection;
 import base.BaseTest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -21,6 +22,7 @@ public class UserCRUDTest extends BaseTest {
     private static final User USER_CREATE = new User("Julia", "Testova", 100, 5000, false);
     private static final User USER_EDIT = new User("qwerty", "test", 2, 7, false);
     static int userId = 0;
+    ApiConnection apiConnection = new ApiConnection(API_URL);
 
     @BeforeEach
     public void setUp() {

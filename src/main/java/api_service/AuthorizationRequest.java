@@ -13,7 +13,7 @@ public class AuthorizationRequest {
 
     public AuthorizationRequest(String password, String username) {
         this.password = ConfigReader.get("password");
-        this.username = ConfigReader.get("username");;
+        this.username = ConfigReader.get("username");
     }
 
     public String toJson() {

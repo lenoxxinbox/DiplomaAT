@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
-import io.qameta.allure.Step;
+
 public class UsersAddMoneyPage {
     private final SelenideElement USER_ID = $(id("id_send"));
     private final SelenideElement SEND_MONEY = $(id("money_send"));
@@ -43,5 +43,4 @@ public class UsersAddMoneyPage {
     public void waitForStatusChange() {
         STATUS_INFO.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
   }
-  
 }
