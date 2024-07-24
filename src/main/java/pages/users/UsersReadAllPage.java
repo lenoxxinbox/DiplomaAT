@@ -2,19 +2,20 @@ package pages.users;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.xpath;
-
 public class UsersReadAllPage {
     private final SelenideElement RELOAD_BUTTON = $(xpath("//button[text()='Reload']"));
     private final SelenideElement SORT_BY_ID_BUTTON = $(xpath("//button[@class='btn btn-secondary'][2]"));
@@ -101,19 +102,19 @@ public class UsersReadAllPage {
     }
     @Step("Получение List по полю Age")
     public UsersReadAllPage getListForAge(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[4]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
     @Step("Получение List по полю Sex")
     public UsersReadAllPage getListForSex(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[5]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
     @Step("Получение List по полю Money")
     public UsersReadAllPage getListForMoney(boolean ascending) {
-        ElementsCollection list = $$x("//tbody//tr//td[6]").shouldHave(sizeGreaterThan(0));
+        ElementsCollection list = $$x("//tbody//tr//td[3]").shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
         return this;
     }
