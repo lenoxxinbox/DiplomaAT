@@ -14,6 +14,8 @@ public class FindHousePage {
     private final static SelenideElement ID_FIND = $x("//input[@id='house_input']");
     private final static SelenideElement TABLE_FIND = $x("//table[@class='tableHouse table table-striped table-bordered table-hover']");
     private final static SelenideElement FIND_BUTTON = $x("//button[contains(text(), 'Read')]");
+    private static final SelenideElement STATUS_FOLD = $x("//button[@class='status btn btn-secondary']");
+    private static final String BASIC_STATUS = "Status: 200 ok";
 
     @Step("Проверяем переход на страницу с поиском дома")
     public FindHousePage goFindHouse() {
@@ -32,6 +34,11 @@ public class FindHousePage {
         ID_FIND.sendKeys(id);
         FIND_BUTTON.click();
         $(TABLE_FIND).shouldBe(visible, Duration.ofSeconds(10));
+        return this;
+    }
+    @Step("Ожидание изменения поля статус")
+    public FindHousePage waitForStatusChange() {
+        STATUS_FOLD.shouldNotHave(text(BASIC_STATUS), Duration.ofSeconds(10));
         return this;
     }
 }

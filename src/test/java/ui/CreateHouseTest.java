@@ -1,6 +1,7 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import model.House;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pages.houses.CreateHousePage.id;
 
+@Feature("Проверка создания домов")
 public class CreateHouseTest extends BaseTest {
 
     public static final String SUCCESSFUL_REQUEST_STATUS = "Status: Successfully pushed, code: 201";

@@ -1,6 +1,7 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pages.houses.CreateHousePage.id;
 
+@Feature("Проверка поиска домов")
 public class FindHouseTest extends BaseTest {
     public static final String SUCCESS_FIND = "Status: 200 ok";
     public static final String NOT_FIND = "Status: 204 house not found";
@@ -45,6 +47,7 @@ public class FindHouseTest extends BaseTest {
         assertEquals(findHousePage
                 .goFindHouse()
                 .findHouse(ID_NOT_FOUND)
+                .waitForStatusChange()
                 .getFindStatus(), NOT_FIND, "Сообщение не соответствует");
     }
 }
