@@ -21,4 +21,3 @@ public class AuthorizationRequest {
         return gson.toJson(this);
     }
 }
-

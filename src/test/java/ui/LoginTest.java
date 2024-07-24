@@ -1,5 +1,7 @@
-package base;
+package ui;
 
+import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +10,7 @@ import utils.ConfigReader;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Проверка авторизации")
 public class LoginTest extends BaseTest {
 
     private final static String USERNAME = ConfigReader.get("username");
@@ -88,7 +91,6 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
                 () -> assertEquals(INVALID_EMAIL_ERROR_MESSAGE, emailErrorMessage, "Сообщение рядом с полем email должно быть корректным")
         );
-
     }
 
     @Test
@@ -104,7 +106,6 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals(INCORRECT_INPUT_MESSAGE, alertMessage, "Сообщение об ошибке должно быть корректным"),
                 () -> assertEquals(INVALID_PASSWORD_ERROR_MESSAGE, passwordErrorMessage, "Сообщение рядом с полем password должно быть корректным")
         );
-
     }
 
     @Test
@@ -122,6 +123,5 @@ public class LoginTest extends BaseTest {
                 () -> assertEquals("", emailInputValue, "Поле email должно быть пустым"),
                 () -> assertEquals("", passwordInputValue, "Поле password должно быть пустым")
         );
-
     }
 }

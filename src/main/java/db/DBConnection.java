@@ -3,7 +3,6 @@ package db;
 import model.Car;
 import model.User;
 import model.House;
-
 import java.sql.*;
 
 public class DBConnection {
@@ -25,6 +24,11 @@ public class DBConnection {
     public ResultSet executeQuery(String query) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         return statement.executeQuery();
+    }
+
+    public int executeUpdate(String query) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        return statement.executeUpdate();
     }
 
     public User getUserById(String id) throws SQLException {
@@ -77,17 +81,32 @@ public class DBConnection {
         String  engine_type_id = null;
         String mark = null;
         String model = null;
-        Double price = null;
+        String price = null;
 
         while (result.next()) {
-            engine_type_id = result.getString("engine_type_id");
-            if ("2".equals(engine_type_id)){
-                engine_type_id = "Diesel";
-            }
+            String engineTypeId = result.getString("engine_type_id");
+            engine_type_id = getEngineTypeName(engineTypeId);
             mark = result.getString("mark");
             model = result.getString("model");
-            price = result.getDouble("price");
+            price = Double.toString(result.getDouble("price"));
         }
         return new Car(engine_type_id, mark, model, price);
+    }
+
+    public String getEngineTypeName(String engineType){
+        return switch (engineType) {
+            case "1" -> "Gasoline";
+            case "2" -> "Diesel";
+            case "3" -> "CNG";
+            case "4" -> "Hydrogenic";
+            case "5" -> "Electric";
+            case "6" -> "PHEV";
+            default -> "Unknown";
+        };
+    }
+
+    public void deleteCarById(String id) throws SQLException {
+        String query = "DELETE FROM car WHERE id = " + id;
+        ResultSet result = executeQuery(query);
     }
 }

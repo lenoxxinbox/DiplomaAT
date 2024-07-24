@@ -1,7 +1,6 @@
 package pojo;
 
 import java.util.List;
-
 import lombok.Data;
 import uk.co.jemos.podam.common.PodamCollection;
 import uk.co.jemos.podam.common.PodamIntValue;

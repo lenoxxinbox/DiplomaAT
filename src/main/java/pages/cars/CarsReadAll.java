@@ -9,14 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CarsReadAll {
-
     private static final SelenideElement RELOAD_BUTTON = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
     private static final SelenideElement SORT_BY_ID = $x("//*[@id=\"root\"]/div/section/div/div/button[3]");
     private static final SelenideElement SORT_BY_ENGINE_TYPE = $x("//*[@id=\"root\"]/div/section/div/div/button[4]");
@@ -97,7 +95,7 @@ public class CarsReadAll {
     }
 
     @Step("Получение List по полю типу двигателя")
-    public CarsReadAll getListForEngineType(boolean ascending){
+    public CarsReadAll getListForEngineType(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[2]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
@@ -105,7 +103,7 @@ public class CarsReadAll {
     }
 
     @Step("Получение List по полю марке")
-    public CarsReadAll getListForMark(boolean ascending){
+    public CarsReadAll getListForMark(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[3]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
@@ -113,7 +111,7 @@ public class CarsReadAll {
     }
 
     @Step("Получение List по полю модели")
-    public CarsReadAll getListForModel(boolean ascending){
+    public CarsReadAll getListForModel(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[4]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(false, ascending, list);
@@ -121,7 +119,7 @@ public class CarsReadAll {
     }
 
     @Step("Получение List по полю цене")
-    public CarsReadAll getListForPrice(boolean ascending){
+    public CarsReadAll getListForPrice(boolean ascending) {
         ElementsCollection list = $$x("//tbody//tr//td[5]")
                 .shouldHave(sizeGreaterThan(0));
         collectList(true, ascending, list);
@@ -151,7 +149,7 @@ public class CarsReadAll {
         }
     }
 
-
+    @Step("Сортировка списка")
     private <T extends Comparable<? super T>> void checkSortingOrder(List<T> valueList, boolean ascending) {
         if (valueList.isEmpty()) {
             throw new AssertionError("No valid data found for sorting.");
@@ -186,13 +184,14 @@ public class CarsReadAll {
         return true;
     }
 
+    @Step("Ожидание стрелки после нажатия на кнопку сортировки")
     public CarsReadAll assertSortButtonVisible(String buttonText) {
         $$(By.xpath("//button[text() = '" + buttonText + "']")).filter(visible).shouldHave(sizeGreaterThan(0));
         return this;
     }
 
     @Step("Получение первого ID в таблице")
-    public String getFirstId(){
+    public String getFirstId() {
         String firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]")).getText();
         TABLE_BODY.shouldBe(visible);
         return firstId;

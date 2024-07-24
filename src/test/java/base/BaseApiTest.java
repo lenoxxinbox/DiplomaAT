@@ -19,25 +19,25 @@ import static io.restassured.RestAssured.given;
 public class BaseApiTest {
     protected static String accessToken;
     protected static CarRequest carRequest;
+    protected static AuthorizationRequest authRequest;
+
+    @BeforeEach
+    public void inizialization(){
+        carRequest = new CarRequest();
+    }
 
     @BeforeAll
     protected static void setUp() {
-        RestAssured.baseURI = ConfigReader.get("baseApiURL");
-        AuthorizationRequest authRequest = new AuthorizationRequest(
+        authRequest = new AuthorizationRequest(
                 ConfigReader.get("password"),
-                ConfigReader.get("username")
-        );
+                ConfigReader.get("username"));
+        RestAssured.baseURI = ConfigReader.get("baseApiURL");
         String authJson = authRequest.toJson();
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(authJson)
                 .post("/login");
         accessToken = response.jsonPath().getString("access_token");
-    }
-
-    @BeforeEach
-    public void inizialization(){
-        carRequest = new CarRequest();
     }
 
     protected static RequestSpecification requestSpec(String accessToken) {
@@ -52,5 +52,4 @@ public class BaseApiTest {
                 .expectStatusCode(statusCode)
                 .build();
     }
-
 }

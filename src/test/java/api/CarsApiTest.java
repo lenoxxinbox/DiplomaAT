@@ -1,11 +1,13 @@
 package api;
 
 import base.BaseApiTest;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import model.Car;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Feature("Проверка создания авто с помощью API запросов")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsApiTest extends BaseApiTest {
     private static String carId;
@@ -14,7 +16,7 @@ public class CarsApiTest extends BaseApiTest {
     @Order(1)
     @DisplayName("POST/Успешное создание автомобиля")
     public void checkPostCarSuccessful() {
-        Car car = new Car("Diesel", "Tesla", "XXL", 200.00);
+        Car car = new Car("Diesel", "Tesla", "XXL", "200");
         Response postResponse = carRequest
                 .createCar(car,requestSpec(accessToken))
                 .then().log().all()
@@ -40,7 +42,7 @@ public class CarsApiTest extends BaseApiTest {
     @Order(3)
     @DisplayName("PUT/Изменение автомобиля")
     public void checkPutCarSuccessful() {
-        Car updatedCar = new Car("Electric", "Lada", "S", 300.00);
+        Car updatedCar = new Car("Electric", "Lada", "S", "300.00");
         Response putResponse = carRequest
                 .updateCar(updatedCar, carId, requestSpec(accessToken))
                 .then().log().all()

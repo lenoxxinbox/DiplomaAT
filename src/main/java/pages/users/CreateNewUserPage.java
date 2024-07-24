@@ -1,12 +1,11 @@
-package pages;
+package pages.users;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -24,12 +23,13 @@ public class CreateNewUserPage {
     WebDriver driver = WebDriverRunner.getWebDriver();
     Actions actions = new Actions(driver);
 
+    @Step("Проверка открытия страницы")
     public CreateNewUserPage isPageOpen() {
         PUSH_BUTTON.shouldBe(visible);
         return this;
     }
 
-
+    @Step("Создание пользователя")
     public CreateNewUserPage createUser(String firstName, String secondName, int age, int money, boolean isMale) {
 
         if (isMale) {
@@ -48,28 +48,33 @@ public class CreateNewUserPage {
         return this;
     }
 
+    @Step("Заполнение поля first_name")
     public CreateNewUserPage fillFirstName(String firstName) {
         actions.click(FIRST_NAME_INPUT).perform();
         actions.sendKeys(FIRST_NAME_INPUT, firstName);
         return this;
     }
 
+    @Step("Заполнение поля secondName")
     public CreateNewUserPage fillSecondName(String secondName) {
         actions.click(SECOND_NAME_INPUT).perform();
         actions.sendKeys(SECOND_NAME_INPUT, secondName);
         return this;
     }
 
+    @Step("Заполнение поля age")
     public CreateNewUserPage fillAge(int age) {
         actions.sendKeys(AGE_INPUT, String.valueOf(age));
         return this;
     }
 
+    @Step("Заполнение поля money")
     public CreateNewUserPage fillMoney(int money) {
         actions.sendKeys(MONEY_INPUT, String.valueOf(money));
         return this;
     }
 
+    @Step("Заполнение поля sex")
     public CreateNewUserPage selectSex(boolean isMale) {
         if (isMale) {
             actions.click(SEX_MALE_INPUT).perform();
@@ -81,23 +86,23 @@ public class CreateNewUserPage {
         return this;
     }
 
+    @Step("Нажатие кнопки PUSH")
     public CreateNewUserPage clickPushButton() {
         PUSH_BUTTON.shouldBe(visible);
         actions.click(PUSH_BUTTON).perform();
         return this;
     }
 
-
+    @Step("Проверка корректности сообщения")
     public boolean isStatusMessageCorrect(String expectedMessage) {
         STATUS_BUTTON.shouldHave(text(expectedMessage), Duration.ofSeconds(10));
         return STATUS_BUTTON.getText().equals(expectedMessage);
     }
 
+    @Step("Получение id созданного пользователя")
     public String getNewUserId() {
         NEW_USER_BUTTON.shouldBe(visible);
         String text = NEW_USER_BUTTON.getText();
         return text.replaceAll("^.*?(\\d+)$", "$1");
-
     }
-
 }

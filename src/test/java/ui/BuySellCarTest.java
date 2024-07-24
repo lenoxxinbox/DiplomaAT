@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Feature("Проверка покупки и продажи машин")
 public class BuySellCarTest extends BaseTest {
-
     static final String SUCCESS_MESSAGE = "Status: Successfully pushed, code: 200";
     static final String NOT_FOUND_MESSAGE = "Status: AxiosError: Request failed with status code 404";
 

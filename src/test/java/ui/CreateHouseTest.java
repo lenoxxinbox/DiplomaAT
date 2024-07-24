@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pages.CreateHousePage.id;
+import static pages.houses.CreateHousePage.id;
 
 public class CreateHouseTest extends BaseTest {
 

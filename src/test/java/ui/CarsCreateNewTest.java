@@ -1,13 +1,16 @@
 package ui;
 
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import model.Car;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Feature("Проверка создания нового автомобиля на UI")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CarsCreateNewTest extends BaseTest {
     private final String STATUS_SUCCESSFUL = "Status: Successfully pushed, code: 201";
@@ -34,7 +37,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCar() throws SQLException {
         String receivedStatus = carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "FiatUs", "Albea", 5000.00)
+                .createNewCar("Diesel", "FiatUs", "Albea", "200.0")
                 .getStatusText();
         String newId = carsCreateNew.getNewId();
 
@@ -47,12 +50,13 @@ public class CarsCreateNewTest extends BaseTest {
                 () -> assertEquals(STATUS_SUCCESSFUL, receivedStatus, "Статус не соответствует ожидаемому"),
                 () -> assertEquals(firstID, newId, "Id нового автомобиля не получен")
         );
+
         Car createdCar = dbConnection.getCarById(newId);
         assertAll(
                 () -> assertEquals("Diesel", createdCar.getEngineType(), "Тип двигателя не соответствует ожидаемому"),
                 () -> assertEquals("FiatUs", createdCar.getMark(), "Марка не соответствует ожидаемой"),
                 () -> assertEquals("Albea", createdCar.getModel(), "Модель не соответствует ожидаемой"),
-                () -> assertEquals(5000.0, createdCar.getPrice(), "Цена не соответствует ожидаемой")
+                () -> assertEquals("200.0", createdCar.getPrice(), "Цена не соответствует ожидаемой")
         );
     }
 
@@ -73,7 +77,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCarWithEmptyEngineType() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("", "Fiat", "Albea", 5000.0)
+                .createNewCar("", "Fiat", "Albea", "5000.0")
                 .getStatusText(), STATUS_INVALID, "Статус не соответствует ожидаемому");
     }
 
@@ -83,7 +87,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCarWithEmptyMark() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "", "Albea", 5000.0)
+                .createNewCar("Diesel", "", "Albea", "5000.0")
                 .getStatusText(), STATUS_INVALID, "Статус не соответствует ожидаемому");
     }
 
@@ -93,7 +97,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCarWithEmptyModel() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "Fiat", "", 5000.0)
+                .createNewCar("Diesel", "Fiat", "", "5000.0")
                 .getStatusText(), STATUS_INVALID, "Статус не соответствует ожидаемому");
     }
 
@@ -103,7 +107,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkCreateCarWithEmptyPrice() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "Fiat", "Albea", null)
+                .createNewCar("Diesel", "Fiat", "Albea", "")
                 .getStatusText(), STATUS_INVALID, "Статус не соответствует ожидаемому");
     }
 
@@ -114,7 +118,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkNegativeNumbersPriceFold() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("Diesel", "Fiat", "Albea", -12.0)
+                .createNewCar("Diesel", "Fiat", "Albea", "-12.0")
                 .getStatusText(), STATUS_INVALID, "Статус не соответствует ожидаемому");
     }
 
@@ -124,7 +128,7 @@ public class CarsCreateNewTest extends BaseTest {
     public void checkInvalidEngineTypeFold() {
         assertEquals(carsCreateNew
                 .isOpenPage()
-                .createNewCar("Fiat", "Fiat", "Albea", 12.0)
+                .createNewCar("Fiat", "Fiat", "Albea", "12.0")
                 .getStatusText(), STATUS_AXIOS_ERROR, "Статус не соответствует ожидаемому");
     }
 }
