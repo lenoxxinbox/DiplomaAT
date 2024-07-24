@@ -29,7 +29,7 @@ public class UsersReadUserWithCarsTest extends BaseTest {
     public void findUserWithCarsExist() {
         usersReadUserWithCarsPage.findUserWithCars("3");
         String actualMessage = usersReadUserWithCarsPage.statusInfo();
-        assertEquals(actualMessage, expectedMessageOk);
+        assertEquals(actualMessage, expectedMessageOk, "Статус сообщения не соответствует");
     }
 
     @Test
@@ -39,6 +39,6 @@ public class UsersReadUserWithCarsTest extends BaseTest {
     public void findUserWithCarsNotExist() {
         usersReadUserWithCarsPage.findUserWithCars("9999999999999");
         String actualMessage = usersReadUserWithCarsPage.statusInfo();
-        assertEquals(actualMessage, expectedMessageUserNotFound);
+        assertEquals(actualMessage, expectedMessageUserNotFound, "Статус сообщения не соответствует");
     }
 }

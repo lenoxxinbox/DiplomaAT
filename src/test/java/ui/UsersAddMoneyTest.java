@@ -72,9 +72,9 @@ public class UsersAddMoneyTest extends BaseTest {
         apiConnection.authorize(USERNAME, PASSWORD);
         int code = apiConnection.deleteUser(Integer.parseInt(id)).getStatusCode();
 
-        assertAll(() -> assertTrue(isStatusMessageCorrect, "status message should be correct"),
-                () -> assertEquals(actualMessage, expectedMessageSuccess),
-                () -> assertEquals(code, 204)
+        assertAll(() -> assertTrue(isStatusMessageCorrect, "Статус сообщения не соответствует"),
+                () -> assertEquals(actualMessage, expectedMessageSuccess, "Статус сообщения не соответствует"),
+                () -> assertEquals(code, 204, "Код ответа API не соответствует")
         );
     }
 
@@ -86,7 +86,7 @@ public class UsersAddMoneyTest extends BaseTest {
         menu.openUsersAddMoney();
         usersAddMoneyPage.addMoneyToUser("3", "200");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        assertEquals(actualMessage, expectedMessageSuccess);
+        assertEquals(actualMessage, expectedMessageSuccess, "Статус сообщения не соответствует");
     }
 
     @Test
@@ -97,7 +97,7 @@ public class UsersAddMoneyTest extends BaseTest {
         menu.openUsersAddMoney();
         usersAddMoneyPage.addMoneyToUser("909090909090","200");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        assertEquals(actualMessage, expectedMessageError);
+        assertEquals(actualMessage, expectedMessageError, "Статус сообщения не соответствует");
     }
 
     @Test
@@ -108,6 +108,6 @@ public class UsersAddMoneyTest extends BaseTest {
         menu.openUsersAddMoney();
         usersAddMoneyPage.addMoneyToUser("-1","0");
         String actualMessage = usersAddMoneyPage.statusInfo();
-        assertEquals(actualMessage, expectedMessageIncorrectData);
+        assertEquals(actualMessage, expectedMessageIncorrectData, "Статус сообщения не соответствует");
     }
 }
