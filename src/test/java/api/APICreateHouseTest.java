@@ -1,5 +1,6 @@
 package api;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -10,6 +11,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 import static io.restassured.RestAssured.given;
 
+@Feature("Проверка создания домов с помощью API-запросов")
 public class APICreateHouseTest {
     PodamFactory factory = new PodamFactoryImpl();
     HouseExample houseExample = factory.manufacturePojo(HouseExample.class);
