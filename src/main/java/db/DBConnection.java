@@ -26,11 +26,6 @@ public class DBConnection {
         return statement.executeQuery();
     }
 
-    public int executeUpdate(String query) throws SQLException{
-        PreparedStatement statement = connection.prepareStatement(query);
-        return statement.executeUpdate();
-    }
-
     public User getUserById(String id) throws SQLException {
         String query = "SELECT * FROM person WHERE id = " + id;
         ResultSet result = executeQuery(query);
@@ -103,10 +98,5 @@ public class DBConnection {
             case "6" -> "PHEV";
             default -> "Unknown";
         };
-    }
-
-    public void deleteCarById(String id) throws SQLException {
-        String query = "DELETE FROM car WHERE id = " + id;
-        ResultSet result = executeQuery(query);
     }
 }

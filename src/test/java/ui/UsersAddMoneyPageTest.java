@@ -1,6 +1,8 @@
 package ui;
 
+import api_service.ApiConnection;
 import base.BaseTest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 
@@ -30,6 +32,7 @@ public class UsersAddMoneyPageTest extends BaseTest {
     public static final String expectedMessageSuccess = "Status: Successfully pushed, code: 200";
     public static final String expectedMessageError = "Status: AxiosError: Request failed with status code 404";
     public static final String expectedMessageIncorrectData = "Status: Incorrect input data";
+    ApiConnection apiConnection = new ApiConnection(API_URL);
 
     @BeforeEach
     public void setUp() {

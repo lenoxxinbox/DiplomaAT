@@ -97,4 +97,8 @@ public class ApiConnection {
     public Response deleteUser(int id) {
         return this.delete(url + "user/" + id);
     }
+
+    public Response deleteCar(String id) {
+        return this.delete(url + "car/" + id);
+    }
 }

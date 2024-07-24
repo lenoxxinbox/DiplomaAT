@@ -1,5 +1,6 @@
 package ui;
 
+import api_service.ApiConnection;
 import base.BaseTest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -25,6 +26,7 @@ public class CreateNewUserTest extends BaseTest {
     public static final boolean IS_MALE = true;
     private final static String USERNAME = ConfigReader.get("username");
     private final static String PASSWORD = ConfigReader.get("password");
+    ApiConnection apiConnection = new ApiConnection(API_URL);
 
     @BeforeEach
     public void login() {

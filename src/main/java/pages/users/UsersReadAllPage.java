@@ -201,6 +201,5 @@ public class UsersReadAllPage {
         SelenideElement firstId = $(By.xpath("//*[@id=\"root\"]/div/section/div/table/tbody/tr[1]/td[1]"));
         firstId.shouldHave(text(expectedId));
         return expectedId.equals(firstId.getText());
-
     }
 }

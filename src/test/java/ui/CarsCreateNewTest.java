@@ -1,9 +1,11 @@
 package ui;
 
+import api_service.ApiConnection;
 import base.BaseTest;
 import io.qameta.allure.Feature;
 import model.Car;
 import org.junit.jupiter.api.*;
+import utils.ConfigReader;
 
 import java.sql.SQLException;
 
@@ -16,6 +18,9 @@ public class CarsCreateNewTest extends BaseTest {
     private final String STATUS_SUCCESSFUL = "Status: Successfully pushed, code: 201";
     private final String STATUS_INVALID = "Status: Invalid request data";
     private final String STATUS_AXIOS_ERROR = "Status: AxiosError: Request failed with status code 400";
+    private final static String USERNAME = ConfigReader.get("username");
+    private final static String PASSWORD = ConfigReader.get("password");
+    ApiConnection apiConnection = new ApiConnection(API_URL);
 
     @BeforeEach
     void setUp() {
@@ -52,14 +57,16 @@ public class CarsCreateNewTest extends BaseTest {
         );
 
         Car createdCar = dbConnection.getCarById(newId);
+        apiConnection.authorize(USERNAME, PASSWORD);
+        int code = apiConnection.deleteCar(newId).getStatusCode();
         assertAll(
                 () -> assertEquals("Diesel", createdCar.getEngineType(), "Тип двигателя не соответствует ожидаемому"),
                 () -> assertEquals("FiatUs", createdCar.getMark(), "Марка не соответствует ожидаемой"),
                 () -> assertEquals("Albea", createdCar.getModel(), "Модель не соответствует ожидаемой"),
-                () -> assertEquals("200.0", createdCar.getPrice(), "Цена не соответствует ожидаемой")
+                () -> assertEquals("200.0", createdCar.getPrice(), "Цена не соответствует ожидаемой"),
+                () -> assertEquals(code, 204, "Созданный пользователь должен быть удален")
         );
     }
-
 
     @Test
     @Order(3)

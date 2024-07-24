@@ -1,5 +1,6 @@
 package base;
 
+import api_service.ApiConnection;
 import api_service.AuthorizationRequest;
 import api_service.CarRequest;
 import io.restassured.RestAssured;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import utils.ConfigReader;
 
+import static base.BaseTest.API_URL;
 import static io.restassured.RestAssured.given;
 
 
@@ -20,10 +22,12 @@ public class BaseApiTest {
     protected static String accessToken;
     protected static CarRequest carRequest;
     protected static AuthorizationRequest authRequest;
+    protected static ApiConnection apiConnection;
 
     @BeforeEach
     public void inizialization(){
         carRequest = new CarRequest();
+        apiConnection = new ApiConnection(API_URL);
     }
 
     @BeforeAll

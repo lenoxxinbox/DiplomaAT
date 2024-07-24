@@ -44,8 +44,6 @@ public class BaseTest {
     protected static CreateHousePage createHousePage;
     protected static FindHousePage findHousePage;
     protected static DBConnection dbConnection;
-    protected static ApiConnection apiConnection;
-
 
     @BeforeAll
     public static void setUpBeforeClass() {
@@ -71,7 +69,6 @@ public class BaseTest {
         createHousePage = new CreateHousePage();
         findHousePage = new FindHousePage();
         dbConnection = new DBConnection();
-        apiConnection = new ApiConnection(API_URL);
 
         try {
             dbConnection.connect(DB_URL, DB_USER, DB_PASSWORD);
