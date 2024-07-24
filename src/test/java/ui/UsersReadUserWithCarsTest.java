@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Feature("Проверка поиска пользователей с машинами")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersReadUserWithCarsPageTest extends BaseTest {
+public class UsersReadUserWithCarsTest extends BaseTest {
 
     String expectedMessageOk = "Status: 200 ok";
     String expectedMessageUserNotFound = "Status: 204 user not found";

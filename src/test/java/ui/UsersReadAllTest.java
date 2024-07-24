@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Feature("Проверка сортировки таблицы со всеми пользователями")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersReadAllPageTest extends BaseTest {
+public class UsersReadAllTest extends BaseTest {
 
     @BeforeEach
     public void setUp() {

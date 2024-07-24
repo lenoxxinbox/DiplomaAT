@@ -16,17 +16,15 @@ import utils.ConfigReader;
 
 @Feature("Проверка добавления денег пользователю")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UsersAddMoneyPageTest extends BaseTest {
+public class UsersAddMoneyTest extends BaseTest {
     private final static String USERNAME = ConfigReader.get("username");
     private final static String PASSWORD = ConfigReader.get("password");
     public static final String FIRST_NAME_TEXT = "Test";
     public static final String SECOND_NAME_TEXT = "User123";
     public static final int AGE_NUM = 25;
-    public static final int NEGATIVE_AGE_NUM = -1;
     public static final int MONEY_NUM = 1000;
     public static final boolean IS_MALE = true;
 
-    public static final String INVALID_REQUEST_STATUS = "Status: Invalid request data";
     public static final String SUCCESSFUL_REQUEST_STATUS = "Status: Successfully pushed, code: 201";
 
     public static final String expectedMessageSuccess = "Status: Successfully pushed, code: 200";
